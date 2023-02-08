@@ -1,0 +1,11 @@
+  <fieldset>
+    <label for="{{ getName() }}">{{ getLabel() }}</label>
+    <input *ngIf="getType() == 'input'"
+      class="{{getHtmlClass()}} obj obj-input" style="{{getHtmlStyle()}} width:100% !important"  type="text"
+      class="form-control"  id="{{ getName() }}"  required  [(ngModel)]="valor" [disabled]="isDisabled()"
+    />
+
+    <sm-select *ngIf="getType() == 'sm-select'" class="{{getHtmlClass()}} obj obj-sm-select" [options]="getOptSmSelect()" [disabled]="isDisabled()"
+    [(ngModel)]="valor">
+   </sm-select>
+  </fieldset>

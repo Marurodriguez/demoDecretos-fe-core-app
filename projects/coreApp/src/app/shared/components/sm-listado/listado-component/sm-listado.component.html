@@ -1,0 +1,59 @@
+<ngx-datatable #datatable class="bootstrap core-bootstrap datatable-scroll" [scrollbarH]="true"
+  [columnMode]="'force'" [headerHeight]="40" [footerHeight]="0" [rowHeight]="'auto'" rowHeight="auto" [externalPaging]="false"
+  [rows]="mls.data.rows" [sorts]="mls.options.sortBy" (sort)="mls.sortChange($event)" [reorderable]="false">
+
+  <ngx-datatable-column  [width]="20"  [resizeable]="false"  [sortable]="false"  [draggable]="false"  [canAutoResize]="false">
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      <a
+      href="javascript:void(0)"
+        title="Mostrar Detalles/Ocultar Detalles"
+        (click)="toggleExpandRow(row)" *ngIf="canExpand()"
+      >
+      <i class="fas fa-chevron-right"></i>
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+      <div style="padding-left:60px;">
+        <div><strong>MOSTRAR SUBCOMPONENTE QUE DEVUELVA EL HTML</strong></div>
+        <div>https://angular.io/guide/dynamic-component-loader</div>
+
+        <ng-template rowDetail #rowDetail></ng-template>
+      </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+
+
+  <!-- OPERACIONES -->
+  <ngx-datatable-column name="" [width]="5" [sortable]="false" [resizeable]="false"
+    [draggable]="false">
+    <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+      <!-- <div class="text-left"> -->
+        <i class="fas fa-trash list-icon icon-delete cursor-pointer mr-2" *ngIf="canDelete(row)"
+          (click)="askDelete(row)"></i>
+        <i class="fal fa-edit cursor-pointer list-icon icon-edit" *ngIf="canView(row)" (click)="view(row)"></i>
+      <!-- </div> -->
+    </ng-template>
+  </ngx-datatable-column>
+
+
+  <!-- COLUMNAS  -->
+  <ngx-datatable-column *ngFor="let col of mls.data.cols" name="{{col.name}}" prop="{{col.prop}}" [width]="col.width"
+    [sortable]="col.sortable" [draggable]="false">
+    <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+      <p>{{getValueFromCol(col,row)}}</p>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+<ngb-pagination *ngIf="showPaginate()" class="d-flex justify-content-center" (pageChange)="setPage($event)"
+  [collectionSize]="mls.getTotalElements()" [pageSize]="mls.getPageSize()" [(page)]="mls.data.pageNumber"
+  [boundaryLinks]="true" [maxSize]="5" [rotate]="true"> </ngb-pagination>
+
+<!-- find listado -->
+
+<div class="card-footer" *ngIf="showTotal()">
+  Total: {{getTotalRows()}}
+</div>

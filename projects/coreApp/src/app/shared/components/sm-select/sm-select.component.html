@@ -1,0 +1,12 @@
+
+<ng-select [items]="items" bindLabel="{{bindLabel}}" bindValue="{{bindValue}}"
+  [typeahead]="typeahead" [(ngModel)]="idSelected"
+  [selectOnTab]="true" [minTermLength]="minTermLength" (change)="change($event)"
+  [readonly]="disabled" [searchable]="searchable" [clearable]="clearable"
+>
+</ng-select>
+  <!-- <ng-template ng-option-tmp let-item="item">
+      {{item.id}} - {{item.nombre}}
+    </ng-template> -->
+
+<p *ngIf="debug == true">{{idSelected|json}} || {{objectSelected|json}}</p>

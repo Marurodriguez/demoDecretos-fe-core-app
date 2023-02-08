@@ -1,0 +1,100 @@
+<div class="limiter">
+  <div class="container-table100">
+    <div class="wrap-table100">
+      <div class="table">
+        <div class="table-row header">
+          <div [style.width]="list.options.colWidth" class="cell col-header" [style.width]="list.options.buttonsWidth"
+            *ngIf="list.buttons.length > 0">
+            {{list.options.buttonsLabel}}
+          </div>
+          <div [style.width]="col.width" class="cell col-header" *ngFor="let col of this.list.cols; let colIndex=index">
+            {{col.label}}
+          </div>
+        </div>
+
+
+        <div class="table-row" *ngFor="let row of this.list.data; let rowIndex=index" (click)="clickButton(row, '')">
+          <div class="icon-cell">
+            <i class="i-icon-cell {{list.options.iconCell}}"></i>
+          </div>
+
+          <div class="cell buttons" *ngIf="this.list.buttons?.length > 0">
+            <div class="div-button" *ngFor="let button of this.list.buttons; let buttonIndex=index" >
+              <button md-icon-button (click)="clickButton(row, button, $event)" title="{{button?.toolTipText}}" *ngIf="isListadoButtonVisible(row, button)">
+                <i class="button-icon {{button.icon}}"></i> <p [innerHtml]=button.label *ngIf="button.labelVisible && button.labelVisible == true"></p>
+              </button>
+            </div>
+          </div>
+
+          <div class="cell {{getDataClassRow(colIndex,rowIndex, row, col, 'text')}}" [attr.data-title]="col.label"
+            *ngFor="let col of this.list.cols; let colIndex=index"
+            [ngStyle]="getDataStyleCellValue(colIndex,rowIndex,row,col,'cell')">
+            <p *ngIf="col.type != 'object'">
+              {{getDataValueRow(colIndex,rowIndex, row, col)}}
+            </p>
+            <div *ngIf="col?.type== 'object' && col?.object?.objectType == 'input'">
+              <input-listado [row]="row" [colName]="col?.object?.colName" [componentEvent]='col?.object?.componentEvent' [extra]='col?.object?.extra'></input-listado>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <!-- Export PDF -->
+      <div style="display: none;" *ngIf="allowExport">
+        <table id="pdfTable" #pdfTable class="sfc_table">
+          <thead>
+            <tr>
+              <th [style.width]="col.width" width={{col.width}} class="col-header" *ngFor="let col of this.colExport; let colIndex=index">
+                {{col.label}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngIf="getExportTitle().length > 0">
+              <td colspan="100%">{{getExportTitle()}}</td>
+            </tr> -->
+            <tr *ngFor="let row of this.list.data; let rowIndex=index">
+              <td width={{col.width}} *ngFor="let col of this.colExport; let colIndex=index"
+                class="cell {{getDataClassRow(colIndex,rowIndex, row, col, 'text')}}"
+                [ngStyle]="getDataStyleCellValue(colIndex,rowIndex,row,col,'cell')">
+                {{getDataValueRow(colIndex,rowIndex, row, col)}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- PAGINATION -->
+      <div class="datatable-footer-inner">
+        <div class="row">
+          <div class="col-12 col-md-2 p-total">
+            Total: {{collectionSize}}
+          </div>
+          <div class="col-12 col-md-2 p-total" style="color:white">
+            <button *ngIf="list?.options?.exportButton == true" class="btn btn-outline mr-1 primary" (click)="exportPdf()">Exportar <i class="fas fa-file-pdf" style="font-size: 2rem;"></i></button>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="nav-pagination">
+              <div class="nav-scroller py-1 mb-1">
+                <nav class="nav d-flex" *ngIf="collectionSize > pageSize">
+                  <ul class="pagination pagination-md flex-md-wrap">
+                    <ngb-pagination size="md" class="ngb-pagination-md d-flex justify-content-center"
+                      [(page)]="pageNumber" [maxSize]="5" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                      (pageChange)="changePage()">
+                    </ngb-pagination>
+                    <ngb-pagination size="sm" class="ngb-pagination-sm d-flex justify-content-center"
+                      [(page)]="pageNumber" [maxSize]="5" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                      (pageChange)="changePage()">
+                    </ngb-pagination>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end datatable-footer-inner -->
+    </div> <!-- end wrap-table100 -->
+  </div>
+</div>

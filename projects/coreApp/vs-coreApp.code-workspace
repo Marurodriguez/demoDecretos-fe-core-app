@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\assets"
+		}
+	],
+	"settings": {
+		"workbench.preferredLightColorTheme": "Dracula",
+		"workbench.preferredDarkColorTheme": "Monokai Dimmed",
+		"workbench.colorCustomizations": {
+
+		},
+		"workbench.colorTheme": "Dracula"
+	}
+}

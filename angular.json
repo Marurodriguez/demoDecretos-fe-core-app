@@ -1,0 +1,245 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "coreApp": {
+      "root": "projects/coreApp",
+      "sourceRoot": "projects/coreApp/src",
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "firebase/app",
+              "@mattlewis92/dom-autoscroller",
+              "angular-calendar/date-adapters/date-fns",
+              "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard",
+              "lodash",
+              "css-element-queries"
+            ],
+            "aot": true,
+            "outputPath": "dist/coreApp",
+            "index": "projects/coreApp/src/index.html",
+            "main": "projects/coreApp/src/main.ts",
+            "tsConfig": "projects/coreApp/tsconfig.app.json",
+            "polyfills": "projects/coreApp/src/polyfills.ts",
+            "assets": [
+              {
+                "input": "projects/assets",
+                "glob": "**/*",
+                "output": "assets"
+              },
+              "projects/coreApp/src/favicon.ico"
+            ],
+            "styles": [
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "projects/assets/css/animate.min.css",
+              "projects/assets/css/demo.css",
+              "projects/assets/sass/core.scss",
+              "projects/styles.css",
+              "projects/coreApp/src/styles.css"
+            ],
+            "scripts": [
+              "projects/assets/vendor/pace/pace.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/coreApp/src/environments/environment.ts",
+                  "with": "projects/coreApp/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "coreApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "coreApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "coreApp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/coreApp/tsconfig.app.json",
+              "projects/coreApp/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**/*"
+            ]
+          }
+        }
+      },
+      "e2e": {
+        "builder": "@angular-devkit/build-angular:protractor",
+        "options": {
+          "protractorConfig": "projects/coreApp/e2e/protractor.conf.js",
+          "devServerTarget": "coreApp:serve"
+        },
+        "configurations": {
+          "production": {
+            "devServerTarget": "coreApp:serve:production"
+          }
+        }
+      }
+    },
+    "consultasDigitalizaciones": {
+      "root": "projects/consultasDigitalizaciones",
+      "sourceRoot": "projects/consultasDigitalizaciones/src",
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "firebase/app",
+              "@mattlewis92/dom-autoscroller",
+              "angular-calendar/date-adapters/date-fns",
+              "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard",
+              "lodash",
+              "css-element-queries"
+            ],
+            "aot": true,
+            "outputPath": "dist/consultasDigitalizaciones",
+            "index": "projects/consultasDigitalizaciones/src/index.html",
+            "main": "projects/consultasDigitalizaciones/src/main.ts",
+            "tsConfig": "projects/consultasDigitalizaciones/tsconfig.app.json",
+            "polyfills": "projects/consultasDigitalizaciones/src/polyfills.ts",
+            "assets": [
+              {
+                "input": "projects/assets",
+                "glob": "**/*",
+                "output": "assets"
+              },
+              "projects/consultasDigitalizaciones/src/favicon.ico"
+            ],
+            "styles": [
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "projects/assets/css/animate.min.css",
+              "projects/assets/css/demo.css",
+              "projects/assets/sass/core.scss",
+              "projects/styles.css",
+              "projects/consultasDigitalizaciones/src/styles.css"
+            ],
+            "scripts": [
+              "projects/assets/vendor/pace/pace.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/consultasDigitalizaciones/src/environments/environment.ts",
+                  "with": "projects/consultasDigitalizaciones/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "consultasDigitalizaciones:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "consultasDigitalizaciones:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "consultasDigitalizaciones:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/consultasDigitalizaciones/tsconfig.app.json",
+              "projects/consultasDigitalizaciones/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**/*"
+            ]
+          }
+        }
+      },
+      "e2e": {
+        "builder": "@angular-devkit/build-angular:protractor",
+        "options": {
+          "protractorConfig": "projects/consultasDigitalizaciones/e2e/protractor.conf.js",
+          "devServerTarget": "consultasDigitalizaciones:serve"
+        },
+        "configurations": {
+          "production": {
+            "devServerTarget": "consultasDigitalizaciones:serve:production"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "consultasDigitalizaciones",
+  "cli": {
+    "analytics": "9e472cbb-4d61-46ce-9a7c-5eae6a406034"
+  }
+}

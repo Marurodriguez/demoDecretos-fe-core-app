@@ -1,0 +1,7 @@
+<!-- rows -->
+
+<div class="form-row" *ngFor="let row of getRows() ; let i = index ">
+  <div class="{{getColHtmlClass(component)}}  form-group" *ngFor="let component of getRowsByIndex(i) ">
+    <sm-abm-control [component] = "component" [disabled]="disabled" ></sm-abm-control>
+  </div>
+</div>

@@ -1,0 +1,429 @@
+@import '../../../../../../../assets/sass/core/colors/palette-variables';
+@import '../../../../../../../assets/sass/core/variables/app-variables';
+@import '../../../../../../../assets/sass/core/variables/variables';
+
+// @import "../variables/variables";
+// @import "../variables/app-variables";
+// @import "../colors/palette-variables";
+
+// $varDarkness: 5;
+// $cell-color:  #fff;
+// $cell-impar: darken($cell-color, $varDarkness);
+
+// $header-background: #34495E;
+// $header-color: white;
+// $positive: green;
+// $negative: red;
+// $neutral: blue;
+// $color-line: #f2f2f2;
+// $cell-background-color-selected: rgb(177, 186, 204);
+
+
+$colors-light: (
+   "varDarkness": 5,
+   "cell-background-color":  #fff,
+   "cell-background-color-impar": rgb(181, 179, 197),
+   "header-background": #34495E,
+   "header-color": white,
+   "cell-color": black,
+   "cell-color-impar": black,
+   "positive": green,
+   "negative": red,
+   "neutral": blue,
+   "color-line": #f2f2f2,
+   "cell-background-color-selected": rgb(177, 186, 204),
+   "cell-color-selected": black
+);
+
+$colors-dark: (
+   "varDarkness": 5,
+   "cell-background-color":  #1e1e1e,
+   "cell-background-color-impar": #292929,
+   "cell-color": #b2b1b5,
+   "cell-color-impar": #a8a8aa,
+   "header-background": #1e1e1e,
+   "header-color": #b2b1b5,
+   "positive": rgb(41, 163, 133),
+   "negative": rgb(219, 127, 127),
+   "neutral": rgb(121, 166, 209),
+   "color-line": #2e2f36,
+   "cell-background-color-selected": #333333,
+   "cell-color-selected": white
+);
+
+.style-light {
+  // $list-selected: $colors-light;
+  // $varDarkness: map-get($list-selected,varDarkness);
+  // $cell-background-color:  map-get($list-selected,cell-background-color);
+  // $cell-background-color-impar: map-get($list-selected,cell-background-color-impar);
+  // $cell-color: map-get($list-selected,cell-color);
+  // $cell-color-impar: map-get($list-selected,cell-color-impar);
+  // $header-background: map-get($list-selected,header-background);
+  // $header-color: map-get($list-selected,header-color);
+  // $positive: map-get($list-selected,positive);
+  // $negative: map-get($list-selected,negative);
+  // $neutral: map-get($list-selected,neutral);
+  // $color-line: map-get($list-selected,color-line);
+  // $cell-background-color-selected: map-get($list-selected,cell-background-color-selected);
+  // $cell-color-selected:map-get($list-selected,cell-color-selected);
+
+  &.table-row:nth-child(even){
+    background-color: map-get($colors-light,cell-background-color);
+    color: map-get($colors-light,cell-color-par);
+  }
+
+  &.table-row:nth-child(odd){
+    background-color: map-get($colors-light,cell-background-color-impar);
+    color: map-get($colors-light,cell-color-impar);
+  }
+
+  &.table-row:hover {
+    background-color: map-get($colors-light,cell-background-color-selected);
+    color: map-get($colors-light,cell-color-selected);
+  }
+
+  &.table-col-header {
+    color: map-get($colors-light,header-color);
+    background: map-get($colors-light,header-background);
+  }
+
+  &.table-row {
+    background-color: map-get($colors-light,cell-background);
+    color:  map-get($colors-light,cell-color);
+  }
+
+  &.money-Cero{
+    color: map-get($colors-light,neutral);
+  }
+  &.money-Mayor{
+    color: map-get($colors-light,positive);
+  }
+  &.money-Menor{
+    color: map-get($colors-light,negative);
+  }  
+  &.yesNo-Yes{
+    color: map-get($colors-light,positive);
+  }
+  &.yesNo-No{
+    color: map-get($colors-light,negative);
+  }
+
+  &.table-row .cell {
+    border-bottom-color: map-get($colors-light,color-line);
+    border-right-color: map-get($colors-light,color-line);
+  }
+
+  &.datatable-footer-inner {
+    background-color: lighten(map-get($colors-light,header-background), 10);
+    color: map-get($colors-light,header-color);
+  }
+ 
+  &.p-total {
+    color: darken(map-get($colors-light,header-color), 5);
+  }
+
+  & ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: lighten(map-get($colors-light,header-background), 0.5) !important;
+    color: darken(map-get($colors-light,header-background),0.5) !important;
+  }
+
+  & ngb-pagination ::ng-deep ul > li.active > a {
+    background-color: lighten(map-get($colors-light,header-background), 15) !important;
+    color: map-get($colors-light,header-color) !important;
+  }
+}
+
+// .main-dark {
+  
+
+//   .table-row {
+//     display: table-row;
+//     background-color:$cell-background-color;
+//     color: $cell-color;
+//     cursor: default;
+//   }
+// }
+
+// $list-selected: $colors-light;
+//   $varDarkness: map-get($list-selected,varDarkness);
+//   $cell-background-color:  map-get($list-selected,cell-background-color);
+//   $cell-background-color-impar: map-get($list-selected,cell-background-color-impar);
+//   $cell-color: map-get($list-selected,cell-color);
+//   $cell-color-impar: map-get($list-selected,cell-color-impar);
+//   $header-background: map-get($list-selected,header-background);
+//   $header-color: map-get($list-selected,header-color);
+//   $positive: map-get($list-selected,positive);
+//   $negative: map-get($list-selected,negative);
+//   $neutral: map-get($list-selected,neutral);
+//   $color-line: map-get($list-selected,color-line);
+//   $cell-background-color-selected: map-get($list-selected,cell-background-color-selected);
+//   $cell-color-selected:map-get($list-selected,cell-color-selected);
+
+
+.table-row{
+  display: table-row;
+  cursor: default;
+}
+
+.listado{
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.cell{
+    margin:0.25rem;
+}
+
+// especiales
+
+.money{
+    text-align: right;
+    font-weight: bolder;
+}
+
+
+
+
+.string, .text, .selected, .especial{
+    text-align: center;
+}
+
+
+
+.yesNo{
+    text-align: center;
+}
+
+
+
+
+.table-col-header{
+    text-align: center;
+    font-weight: bolder;
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+  /*//////////////////////////////////////////////////////////////////
+  [ RESTYLE TAG ]*/
+  * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+  }
+  .icon-cell{
+      display: none;
+  }
+
+
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Table ]*/
+
+  .limiter {
+    width: 100%;
+    margin: 0 0;
+  }
+  button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+    button:hover {
+        cursor: pointer;
+    }
+  .buttons{
+      text-align: center;
+      font-size: 1.2rem !important;
+  }
+
+  .btn-large{
+      font-size: 2rem;
+  }
+
+  .container-table100 {
+    width: 100%;
+    // background: #c4d3f6;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    // padding: 33px 30px;
+  }
+
+  .wrap-table100 {
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .table {
+    width: 100%;
+    display: table;
+    margin: 0;
+  }
+
+  .cell {
+    display: table-cell;
+  }
+
+
+  .table-row .cell {
+    font-size: 15px;
+    line-height: 1.2;
+    padding: 1rem;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;    
+  }
+
+  .table-row.header .cell {
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: unset !important;
+    padding-top: 19px;
+    padding-bottom: 19px;
+  }
+
+  .table, .table-row {
+    width: 100% !important;
+  }
+
+
+
+// PAGINATION ///////////////////////////////////////////////////////////////
+.nav-pagination{
+    // justify-content: right !important;
+    width: 100% !important;
+    display: grid !important;
+    justify-items: right !important;
+    padding-right: 1rem;
+}
+
+
+
+.datatable-footer-inner {
+    width: 100%;
+    display:flex;
+    flex-wrap: flex;
+    padding-left: 1rem;
+}
+
+.p-total{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    vertical-align: middle;
+    text-align: left;
+    padding: 1rem;
+}
+  .ngb-pagination-sm{
+      display: none !important;
+  }
+
+
+
+
+
+// END PAGINATION /////////////////////////////////////////////////////////////
+
+
+//   PARA CELULAR
+@media screen and (max-width: 500px) {
+  .ngb-pagination-sm{
+      display:flex !important;
+  }
+  .ngb-pagination-md{
+      display: none !important;
+  }
+  .icon-cell{
+      display:none;
+  }
+  .limiter {
+    position: relative;
+    // height: 200px;
+    overflow: auto;
+    overflow-y: visible;
+    display: block;
+  }
+  th{
+    word-break: normal;
+  }
+}
+
+
+  @media screen and (max-width: 350px) {
+    .ngb-pagination-sm{
+        display:flex !important;
+    }
+    .ngb-pagination-md{
+        display: none !important;
+    }
+    .icon-cell{
+        display:none;
+        font-size: 3rem;
+        padding: 1.5rem;
+        border-radius: 5px;
+    }
+    .table-row {
+      text-align: center !important;
+      overflow: auto;
+
+    }
+
+    .table-row.header {
+      padding: 0;
+      height: 0px;
+    }
+
+    .table-row.header .cell {
+      display: none;
+    }
+    .table-row .cell{
+        border-bottom:none;
+        border-right: none;
+    }
+    .table-row .cell:before {
+      font-size: 12px;
+      color: #808080;
+      line-height: 1.2;
+      text-transform: uppercase;
+      font-weight: unset !important;
+
+      margin-bottom: 13px;
+      content: attr(data-title);
+      min-width: 98px;
+      display: block;
+    }
+    .cell {
+        display: block;
+        text-align: center !important;
+    }
+    .p-total{
+        text-align: center !important;
+    }
+    .nav-pagination{
+        // justify-content: right !important;
+        width: 100% !important;
+        display: grid !important;
+        justify-items: center !important;
+        padding-left: 1rem;
+    }
+
+  }
+

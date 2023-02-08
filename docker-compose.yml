@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  #node:
+  #  container_name: fontend_node
+  #  build:
+  #    context: ./docker
+  #    dockerfile: docker_node
+  #  ports:
+  #    - 8080:8080
+
+  nginx:
+    container_name: fontend_nginx
+    build:
+      context: ./
+      dockerfile: ./docker/docker_nginx
+    ports:
+      - 80:80
+    #depends_on:
+    #  - node

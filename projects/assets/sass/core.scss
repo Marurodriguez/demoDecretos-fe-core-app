@@ -1,0 +1,31 @@
+@import "bootstrap";
+@import "bootstrap-extended";
+@import "colors";
+@import "components";
+@import "themes/layout-dark";
+@import "core/menu/horizontal-menu";
+@import "overrides";
+
+.hide {
+  display: none;
+}
+
+@media only screen and (min-width: 780px) {
+  .only-desktop {
+    display: inherit !important;
+  }
+
+  .only-mobile {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .only-mobile {
+    display: inherit !important;
+  }
+
+  .only-desktop {
+    display: none !important;
+  }
+}

@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+.ng-select-container, .ng-has-value {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: white !important;
+}
+
+.ng-dropdown-panel,.ng-option {
+    background-color: rgba(0,0,0,0.7) !important;
+    color: white !important;
+}
+
+/* fieldset {
+  background: green !important;
+  margin: 1em;
+} */
+
+fieldset:focus-within label {
+  color: #80d6ff !important;
+}
+fieldset:focus-within input:not([role='combobox']) {
+    border: 1px solid #42a5f5 !important;
+}
+fieldset:focus-within ng-select {
+    border: 1px solid #42a5f5 !important;
+}
+
+.ng-input > input{
+    color: white !important;
+    border: none !important;
+}
+.ng-option .ng-option-selected {
+    color: #80d6ff !important;
+}
+
+/* si esta desactivado */
+fieldset input:disabled {
+  border: 1px solid rgb(125,125,125) !important;
+}
+.ng-select-disabled  .ng-select-container   {
+  border: 1px solid rgb(125,125,125) !important;
+}

@@ -1,0 +1,79 @@
+<p>Screen width: {{ screenWidth }}</p>
+<p>Screen height: {{ screenHeight }}</p>
+
+<div class="limiter style-dark">
+  <div class="container-table100">
+    <div class="wrap-table100">
+      <div class="table">
+        <div class="{{getClass('table-row table-col-header')}} ">
+          <div [style.width]="list.options.colWidth" class="{{getClass('cell col-header')}}" [style.width]="list.options.buttonsWidth"
+            *ngIf="list.buttons.length > 0">
+            {{list.options.buttonsLabel}}
+          </div>
+          <div [style.width]="col.width" class="{{getClass('cell col-header')}} " *ngFor="let col of this.list.cols; let colIndex=index" [hidden]="!isColVisible(col)">
+            {{col.label}}
+          </div>
+        </div>
+
+
+        <div class="{{getClass('table-row')}}" *ngFor="let row of this.list.data; let rowIndex=index" (click)="clickButton(row, '')">
+          <div class="{{getClass('icon-cell')}}">
+            <i class="{{getClass('i-icon-cell')}} {{list.options.iconCell}}"></i>
+          </div>
+
+          <div class="{{getClass('cell buttons')}}" *ngIf="this.list.buttons.length > 0">
+            <button md-icon-button (click)="clickButton(row, button)"
+              *ngFor="let button of this.list.buttons; let buttonIndex=index">
+              <i class="{{getClass(button.icon)}}"></i>
+            </button>
+          </div>
+
+          <div
+          [ngClass]="getDataClassRow(colIndex,rowIndex, row, col, 'text')"
+        [attr.data-title]="col.label" *ngFor="let col of this.list.cols; let colIndex=index" [hidden]="!isColVisible(col)">
+            {{getDataValueRow(colIndex,rowIndex, row, col)}}
+
+            <!-- [ngStyle]="getDataStyleCellValue(colIndex,rowIndex,row,col,'cell')"  -->
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="datatable-footer-inner">
+
+        <div class="row" style="width: 100% !important;">
+          <div class="col-4 col-md-3 p-total">
+            Total: {{collectionSize}}
+          </div>
+          <div class="col-8 col-md-9">
+            <div class="nav-pagination">
+              <div class="nav-scroller py-1 mb-1">
+                <nav class="nav d-flex ">
+                  <ul class="pagination pagination-md flex-md-wrap">
+                    <ngb-pagination size="md" class="ngb-pagination-md d-flex justify-content-center"
+                      [(page)]="pageNumber" [maxSize]="5" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                      (pageChange)="changePage()">
+                    </ngb-pagination>
+<!--
+                    <ngb-pagination class="d-flex justify-content-center" (pageChange)="changePage()"
+                    [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="pageNumber" [boundaryLinks]="true"
+                    [maxSize]="5"> </ngb-pagination> -->
+
+                    <ngb-pagination size="sm" class="ngb-pagination-sm d-flex justify-content-center"
+                      [(page)]="pageNumber" [maxSize]="5" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                      (pageChange)="changePage()">
+                    </ngb-pagination>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>  <!--end datatable-footer-inner -->
+    </div>  <!-- end wrap-table100 -->
+  </div>
+</div>

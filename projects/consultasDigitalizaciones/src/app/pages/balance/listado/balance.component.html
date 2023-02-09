@@ -1,0 +1,100 @@
+<section id="collapse">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="content-header">Balance</div>
+            <p class="content-sub-header mb-1">En esta pantalla se puede exportar el Balance</p>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-4 col-md-4 col-xl-2">
+            <fieldset class="form-group">
+                <label for="input-nombre">Fecha Desde</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="fecha" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker" />
+                    <button class="btn btn-outline-info far fa-calendar-alt ml-1" (click)="d.toggle()" type="button"></button>
+                </div>
+                <ng-template #footerTemplate>
+                    <hr class="my-0" />
+                    <button class="btn btn-primary btn-sm m-2 float-start" (click)="model = today; d.close()">Today</button>
+                    <button class="btn btn-secondary btn-sm m-2 float-end" (click)="d.close()">Close</button>
+                </ng-template>
+            </fieldset>
+        </div>
+        <div class="col-4 col-md-4 col-xl-2">
+            <fieldset class="form-group">
+                <label for="input-nombre">Fecha Hasta</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="fechaHasta" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker" />
+                    <button class="btn btn-outline-info far fa-calendar-alt ml-1" (click)="d.toggle()" type="button"></button>
+                </div>
+                <ng-template #footerTemplate>
+                    <hr class="my-0" />
+                    <button class="btn btn-primary btn-sm m-2 float-start" (click)="model = today; d.close()">Today</button>
+                    <button class="btn btn-secondary btn-sm m-2 float-end" (click)="d.close()">Close</button>
+                </ng-template>
+            </fieldset>
+        </div>
+        <div class="col-4">
+            <a class="btn btnl-lg btn-primary mt-3" href="assets/contablePlus/excel/Balance-ContablePlus-01-09-22_30-09-22.xlsx">GENERAR BALANCE</a>
+        </div>
+    </div>
+    <div class="card bg-light-secondary" *ngIf="loaded">
+        <div class="card-content">
+            <div class="row header" style="margin: 2rem">
+                <div class="col-1">Asiento</div>
+                <div class="col-1">Fecha</div>
+                <div class="col-1">Referencia</div>
+                <div class="col-3">Descripcion</div>
+                <div class="col-2">Cuenta Contable</div>
+                <div class="col-2">Débito</div>
+                <div class="col-2">Crédito</div>
+            </div>
+        </div>
+    </div>
+    <ng-template [ngIf]="loaded">
+        <ng-template ngFor let-asiento [ngForOf]="asientos">
+            <div class="card" *ngIf="asiento.show == true">
+                <div class="card-content">
+                    <div class="row row-normal" style="text-align: center; margin-left: 1rem; margin-right: 1rem">
+                        <div class="col-1 col-align-middle">{{ asiento.id }}</div>
+                        <div class="col-1 col-align-middle">{{ asiento.fecha }}</div>
+                        <div class="col-1 col-align-middle">{{ asiento.referencia }}</div>
+                        <div class="col-3 col-align-middle">{{ asiento.descripcion }}</div>
+                        <div class="col-6">
+                            <ng-template ngFor let-reg [ngForOf]="asiento.registros">
+                                <div class="row row-normal" style="margin-top: 1rem; margin-bottom: 1rem">
+                                    <div class="col-4" class="{{ getClass(reg) }}">
+                                        {{ reg.cuenta.nombre }}
+                                    </div>
+                                    <div class="col-4 total debito">
+                                        <p *ngIf="reg.debito > 0">{{ functionService.formatMoney(reg.debito) }}</p>
+                                    </div>
+                                    <div class="col-3 total credito">
+                                        <p *ngIf="reg.credito > 0">{{ functionService.formatMoney(reg.credito) }}</p>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <!-- <div class="col-2">Cuenta Contable</div>
+                <div class="col-2">Débito</div>
+                <div class="col-2">Crédito</div> -->
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <div class="card bg-light-secondary">
+            <div class="card-content">
+                <div class="row header" style="text-align: right" style="margin: 2rem">
+                    <div class="col-8"><p class="warning">{{cuentaSelected.nombre}}</p></div>
+                    <div class="col-2">
+                        <p style="padding-left: 8rem; color: black !important">{{ functionService.formatMoney(getTotal("debito")) }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p style="padding-left: 4rem; color: black !important">{{ functionService.formatMoney(getTotal("credito")) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</section>

@@ -1,0 +1,42 @@
+<div class="row mt-2">
+    <div class="col-4 col-md-2 mr-2">
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-info" id="dropDownPeriodo" ngbDropdownToggle>
+                {{ selectedOptionLabel }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropDownPeriodo">
+                <button ngbDropdownItem class="btn-select" (click)="selectOption(0)">Periodo</button>
+                <button ngbDropdownItem class="btn-select" (click)="selectOption(1)">Fecha</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOW PERIODO -->
+    <div class="col-8 col-md-4 col-xl-4" [hidden]="showCustomDates">
+        <sm-select class="select-periodo" [options]="selectPeriodoConfig" [initValue]="initValuePeriodo" (changeEvent)="selectPeriodo($event)"> </sm-select>
+    </div>
+
+    <!-- SHOW FECHA -->
+    <div class="col-8 col-md-5 col-xl-4" [hidden]="!showCustomDates">
+        <div class="input-group">
+            <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="fechaInicio" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker" ngbDatepicker (dateSelect)="onDateSelect($event)" (change)="onDateSelect(0)" />
+            <button class="btn btn-outline-info far fa-calendar-alt ml-1" (click)="d.toggle()" type="button"></button>
+        </div>
+        <ng-template #footerTemplate>
+            <hr class="my-0" />
+            <button class="btn btn-primary btn-sm m-2 float-start" (click)="model = today; d.close()">Today</button>
+            <button class="btn btn-secondary btn-sm m-2 float-end" (click)="d.close()">Close</button>
+        </ng-template>
+    </div>
+    <div class="col-8 col-md-5 col-xl-4" [hidden]="!showCustomDates">
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="fechaFin" ngbDatepicker [footerTemplate]="footerTemplate" #df="ngbDatepicker" ngbDatepicker (dateSelect)="onDateSelect($event)" (change)="onDateSelect(0)" />
+            <button class="btn btn-outline-info far fa-calendar-alt ml-1" (click)="df.toggle()" type="button"></button>
+        </div>
+        <ng-template #footerTemplate>
+            <hr class="my-0" />
+            <button class="btn btn-primary btn-sm m-2 float-start" (click)="model = today; df.close()">Today</button>
+            <button class="btn btn-secondary btn-sm m-2 float-end" (click)="df.close()">Close</button>
+        </ng-template>
+    </div>
+</div>

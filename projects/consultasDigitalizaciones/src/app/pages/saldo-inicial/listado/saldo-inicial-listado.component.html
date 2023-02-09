@@ -1,0 +1,102 @@
+<section id="collapse">
+    <div class="row">
+        <div class="col-12">
+            <img class="card-img-top img-fluid land" src="assets/contablePlus/img/saldo-inicial.jpg" alt="Card image cap" />
+
+            <div class="content-header">Saldos Iniciales</div>
+            <p class="content-sub-header mb-1">Desde esta pantalla se van a poder administrar los Saldos Iniciales de las Cuentas</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <!-- Fecha -->
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <fieldset class="form-group">
+                                <label for="input-nombre">Fecha del Saldo Inicial</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="asiento.fecha" ngbDatepicker [footerTemplate]="footerTemplate" #d="ngbDatepicker" />
+                                    <button class="btn btn-outline-info far fa-calendar-alt ml-1" (click)="d.toggle()" type="button"></button>
+                                </div>
+                                <ng-template #footerTemplate>
+                                    <hr class="my-0" />
+                                    <button class="btn btn-primary btn-sm m-2 float-start" (click)="model = today; d.close()">Today</button>
+                                    <button class="btn btn-secondary btn-sm m-2 float-end" (click)="d.close()">Close</button>
+                                </ng-template>
+                            </fieldset>
+                        </div>
+                        <!-- Número de Referencia -->
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <fieldset class="form-group">
+                                <label for="input-nombre">Referencia</label>
+                                <input class="form-control" [(ngModel)]="asiento.referencia"  />
+                            </fieldset>
+                        </div>
+                        <!-- Empresa -->
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <fieldset class="form-group">
+                                <label for="input-nombre">Negocio</label>
+                                <sm-select (changeEvent)="asiento.negocio = $event" [options]="negocioOptions" [initValue]="initValue"></sm-select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Observaciones del Asiento -->
+                        <div class="col-12">
+                            <fieldset class="form-group">
+                                <label for="input-nombre">Observaciones</label>
+                                <textarea class="form-control ng-untouched ng-pristine ng-valid" rows="5" [(ngModel)]="asiento.descripcion" style="resize: none"></textarea>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card bg-lighteen-1" *ngFor="let grupo of grupos">
+        <div class="card-header">
+            <h4>{{ grupo.nombre }}</h4>
+        </div>
+        <div class="card-body">
+            <div *ngFor="let child of grupo.children">
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <p class="bold">{{ child.nombre }}</p>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+                <!-- SUBCHILD 2DO NIVEL -->
+                <div class="row ml-2" *ngFor="let subChild of child.children">
+                    <div class="col-4">
+                        <p>{{ subChild.nombre }}</p>
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control ng-untouched ng-pristine ng-valid" style="resize: none" placeholder="Observaciones" (change)="recalcular()"/>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" style="text-align: right; font-weight: bold" value="0" placeholder="Saldo Inicial" (change)="recalcular()" [(ngModel)]="subChild.saldoInicial"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row mt-3">
+                <div class="col-10">
+                    <h5>{{ grupo.descripcionSuma }}</h5>
+                </div>
+                <div class="col-2">
+                    <h4 class="text-right">{{formatNumber(grupo.saldo)}}</h4>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

@@ -1,0 +1,97 @@
+
+.row-init{
+    // border-top: 1px white solid;
+    margin-top: 1rem;
+    padding-top:2rem;
+}
+
+.colx-detalle-tercero {
+    flex-basis: 30%;
+    max-width: 30%;
+}
+.colx-cuentacontable {
+    flex-basis: 23%;
+    max-width: 23%;
+}
+.colx-debito {
+    flex-basis: 8%;
+    max-width: 8%;
+}
+.colx-credito {
+    flex-basis: 8%;
+    max-width: 8%;
+}
+
+.container-table{
+    width: 100% !important;
+    padding: 0px !important;
+    margin:0px !important;
+    overflow: auto;
+    max-height: 60rem;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.row-space{
+    // height: 0rem !important;
+    background-color: rgba(23, 9, 37, 0.5);
+    text-align: center;
+    
+}
+
+.row-footer{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+p {
+    letter-spacing: 0px;
+    margin-top: 0px;
+    margin-bottom:0px;
+}
+
+.monto {
+    font-family:monospace !important;
+}
+
+.td-debito{
+    padding-left: 1rem;
+    text-align: left;
+}
+.td-credito{
+    text-align: right;
+}
+
+
+.td-cuenta {
+    border-right: 2px white solid;
+    padding-right: -1rem;
+}
+
+
+// tr:nth-child(even):hover {
+//     background-color: rgba(0, 59, 87, 0.5) !important;
+//     cursor: pointer  !important;;
+// }
+// tr:nth-child(odd):hover {
+//     background-color: rgba(0, 59, 87, 0.5) !important;
+//     cursor: pointer  !important;;
+//   }
+
+  .table-transparent{
+    background-color: rgba(0,0,0,0.5);
+}
+
+th{
+    text-align: center !important;
+    vertical-align: middle;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+td {
+    vertical-align: middle !important;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}

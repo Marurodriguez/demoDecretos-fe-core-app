@@ -1,0 +1,25 @@
+<div class="cuenta">
+    <div class="row mt-1 mb-1">
+        <div class="col-8 d-flex" *ngIf="isModeEdit()==false">
+            <button type="button" class="btn btn-info" *ngIf="mostrarBoton()" (click)="toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="expandir">+</button>
+            <p *ngIf="mostrarBoton()==false" style="padding-left: 1.5rem; padding-right:1.5rem"></p>
+            <p class="codigo bg-warning ml-2 mt-2 text-center" style="padding-left:1rem; padding-right:1rem">{{ cuenta.codigo }}</p>
+            <p class="nombre ml-2 mt-2">{{ cuenta.nombre }}</p>
+        </div>
+        <div class="col-8 d-flex" *ngIf="isModeEdit() == true">
+          <input class="form-control" [(ngModel)]="cuenta.nombre"/>
+          <button type="button" class="ml-2 btn btn-danger" (click)="clickCancelButton()" ngbTooltip="Cancelar Cambios"><i class="fas fa-ban"></i></button>
+          <button type="button" class="ml-1 btn btn-success" (click)="clickSaveButton()" ngbTooltip="Guardar Cambios"><i class="fal fa-check"></i></button>
+        </div>
+        <div class="col-4 text-right">
+            <button type="button" class="btn btn-info" (click)="clickEditButton()" *ngIf="permiteEditar()" ngbTooltip="Editar Cuenta"><i class="fal fa-edit bg-info"></i></button>
+            <button type="button" class="btn btn-warning ml-2" (click)="clickCreateButton()" *ngIf="permiteCrearSub()" ngbTooltip="Crear sub-cuenta"><i class="fal fa-layer-plus bg-warning"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="expandir" id="expandir" [ngbCollapse]="isCollapsed" *ngIf="isModeEdit()==false">
+    <div class="cuenta" *ngFor="let row of children">
+        <cuenta-registro [cuenta]="row" [parent]="this"> </cuenta-registro>
+    </div>
+</div>

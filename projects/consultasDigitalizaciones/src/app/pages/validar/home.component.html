@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">SM - SOLUCIONES INFORMÁTICAS</div>
+    <p class="content-sub-header mb-1">
+      Bienvenido al sistema manual de Validación del Sistema, en los casos
+      especiales que el sistema automatico no funcione, debera ingresar el
+      SERIAL y el PC-ID de la computadora y hacer clic en VALIDAR. El Token
+      devuelto deberá ingresarse en el programa para VALIDAR el sistema.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div id="serial" class="card serial-card">
+      <div class="card-body">
+        <!-- <div class="col-12"> -->
+          <fieldset>
+            <label for="inputSerial" style="color: rgb(166, 194, 218)"
+              >(1) Serial</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputSerial"
+              placeholder="Serial"
+              required
+              autocomplete="off"
+              [(ngModel)]="serial"
+            />
+          </fieldset>
+        <!-- </div> -->
+        <!-- <div class="col-12" style="margin-top: 2rem !important"> -->
+          <fieldset class="mt-4 ">
+            <label for="inputHdSerial" style="color: red">(2) Pc Id</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputHdSerial"
+              required
+              autocomplete="off"
+              [(ngModel)]="hdSerial"
+            />
+          </fieldset>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 center-block" >
+    <div id="serial" class="card serial-card text-center">
+      <img src="assets/sm/img/registrar.jpg" style="width: 400px !important" />
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="lValidate==1">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+
+          <!-- Ok! -->
+          <div class="media" *ngIf="validateModel.validateStatus == 1">
+            <div class="media-body text-left">
+              <h3 class="mb-1 success">Validación Ok</h3>
+              <span class="mt-2">{{ validateModel.validateMessage }}</span>
+              <h1 class="text-center mt-4" style="letter-spacing: 1rem">
+                {{ validateModel.validateToken }}
+              </h1>
+              <p class="mt-4" style="color: whitesmoke">
+                El token devuelto debe ingresarlo en el sistema de Registración,
+                en el cuadro TOKEN.
+              </p>
+            </div>
+
+            <div class="media-right align-self-center">
+              <i
+                class="fal fa-check-circle success font-large-2 float-right"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Error! -->
+          <div class="media" *ngIf="validateModel.validateStatus != 1">
+            <div class="media-body text-left">
+              <h3 class="mb-1 danger mt-2">Error en la Validación</h3>
+              <span class="mt-2">{{ validateModel.validateMessage }}</span>
+              <p class="mt-4" style="color: whitesmoke">
+                Revise si ha ingresado correctamente el SERIAL y el PC-ID, ambos se encuentran en la pantalla del módulo de Registración/Validación.
+              </p>
+            </div>
+
+            <div class="media-right align-self-center">
+              <i
+                class="far fa-exclamation-triangle danger font-large-2 float-right"
+              ></i>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 text-center">
+    <button
+      type="button"
+      class="btn btn-primary btn-lg mr-4"
+      (click)="validar()"
+      *ngIf="loading==false && cantValidaciones > 0"
+    >
+      Validar
+    </button>
+  </div>
+</div>

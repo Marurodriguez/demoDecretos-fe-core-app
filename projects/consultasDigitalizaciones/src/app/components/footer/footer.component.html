@@ -1,0 +1,19 @@
+<div class="row paginate-footer">
+    <div class="col-4 col-md-2 cant-selector" *ngIf="showSelector == true">
+        <div class="d-flex inline">
+            <i class="fal fa-list-ol mr-2 mt-1 i-rows"></i>
+            <ng-select class="select-rows" [items]="itemsPaginas" [(ngModel)]="cantResultados"
+                (change)="changeCantResultados($event)" [readonly]="false" [searchable]="false" [clearable]="false">
+            </ng-select>
+        </div>
+    </div>
+
+    <div class="col">
+        <ngb-pagination *ngIf="showPaginate == true" class="d-flex justify-content-center"
+            (pageChange)="setPage($event)" [collectionSize]="paginate.totalElements" [pageSize]="paginate.size"
+            [(page)]="paginate.number" [boundaryLinks]="true" [maxSize]="6" [rotate]="true">
+        </ngb-pagination>
+    </div>
+
+    <div class="col-4 col-md-2 cant-selector" *ngIf="showSelector == true"></div>
+</div>

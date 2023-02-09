@@ -1,0 +1,5 @@
+<div class="empresa d-flex inline" style="width:100%" placement="right" ngbTooltip="Seleccionar Empresa">
+    <i class="fal fa-industry-alt text-info mr-2 mt-1"></i>
+    <sm-select class="select-empresa" [options]="selectEmpresaConfig" [initValue]="initValue" (changeEvent)="EmitChangeEvent($event)">
+    </sm-select>
+</div>

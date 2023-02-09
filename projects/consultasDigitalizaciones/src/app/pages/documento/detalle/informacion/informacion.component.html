@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>Tipo de expediente</td>
+            <td>{{ documento.categoria.nombre }}</td>
+        </tr>
+        <tr>
+            <td>Dependencia iniciadora</td>
+            <td>{{ documento.dependencia_iniciadora }}</td>
+        </tr>
+        <tr>
+            <td>Prefijo</td>
+            <td>{{ documento.prefijo }}</td>
+        </tr>
+        <tr>
+            <td>Numero expediente</td>
+            <td>{{ documento.numero_expediente }}</td>
+        </tr>
+        <tr>
+            <td>Año</td>
+            <td>{{ documento.anio }}</td>
+        </tr>
+        <tr>
+            <td>Caratula</td>
+            <td>{{ documento.caratula }}</td>
+        </tr>
+
+        <tr *ngFor="let informacion of documento.informacion">
+            <td>{{ informacion.campo.nombre }}</td>
+            <td>{{ informacion.valor }}</td>
+        </tr>
+    </tbody>
+</table>

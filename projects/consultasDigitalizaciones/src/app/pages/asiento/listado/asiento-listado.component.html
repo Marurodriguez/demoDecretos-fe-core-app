@@ -1,0 +1,88 @@
+<section id="collapse">
+    <div class="row mt-2 mb-2">
+        <div class="col-8 col-md-6">
+            <periodo-select [(fInicio)]="fecha" [(fFin)]="fechaFin"></periodo-select>
+        </div>
+        <div class="col-4 col-md-6">
+            <button class="btn btnl-lg btn-primary mt-1" (click)="refresh(true)">CARGAR</button>
+        </div>
+    </div>
+    <!-- <div class="card card-header">
+        <div class="card-content">
+            <div class="row header">
+                <div class="colx colx-asiento">#</div>
+                <div class="colx colx-fecha">Fecha</div>
+                <div class="colx colx-referencia">Referencia</div>
+                <div class="colx colx-tercero">Tercero</div>
+                <div class="colx colx-cuentacontable">Cuenta Contable</div>
+                <div class="colx colx-debito">Débito</div>
+                <div class="colx colx-credito">Crédito</div>
+            </div>
+        </div>
+    </div> -->
+
+    <ng-template [ngIf]="loaded">
+        <div class="container-table">
+            <table width="100%" class="table table-transparent table-striped table-dark">
+                <thead class="thead-dark">
+                    <th width="5%">#</th>
+                    <th width="10%">Fecha</th>
+                    <th width="15%">Referencia</th>
+                    <th width="20%">Tercero</th>
+                    <th width="30%">Cuenta Contable</th>
+                    <th width="10%">Debito</th>
+                    <th width="10%">Credito</th>
+                </thead>
+                <tbody>
+                    <ng-template ngFor let-asiento [ngForOf]="asientos">
+                        <tr class="row-space">
+                            <td colspan="100" class="row-space">
+                                <i class="far fa-book-open text-primary" style="text-align: middle; font-size:1.5rem;"></i>
+                            </td>
+                        </tr>
+                        <tr class="row-init">
+                            <!-- número # -->
+                            <td [attr.rowspan]="getField('cantidadRegistros', asiento) + 1">
+                                {{ asiento.id }}
+                            </td>
+                            <!-- FECHA -->
+                            <td [attr.rowspan]="getField('cantidadRegistros', asiento) + 1">
+                                {{ asiento.fecha }}
+                            </td>
+                            <!-- referencia -->
+                            <td [attr.rowspan]="getField('cantidadRegistros', asiento) + 1">
+                                {{ asiento.referencia }}
+                            </td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr *ngFor="let reg of asiento.registros">
+                            <td>
+                                {{ getFieldReg("entidad", reg) }}
+                            </td>
+                            <td class="td-cuenta">
+                                <cuenta-info [cuenta]="reg.cuenta"></cuenta-info>
+                            </td>
+                            <td class="td-debito">
+                                <p *ngIf="reg.debito > 0">{{ functionService.formatMoney(reg.debito) }}</p>
+                            </td>
+                            <td class="td-credito">
+                                <p *ngIf="reg.credito > 0">{{ functionService.formatMoney(reg.credito) }}</p>
+                            </td>
+                        </tr>
+                        <tr class="row-footer">
+                            <td colspan="5"></td>
+                            <td class="td-debito td-total">
+                                <p>{{ functionService.formatMoney(asiento.debito) }}</p>
+                            </td>
+                            <td class="td-credito td-total">
+                                <p>{{ functionService.formatMoney(asiento.debito) }}</p>
+                            </td>
+                        </tr>
+                        <tr class="row-space"></tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+        <footer class="mt-2" [paginate]="paginateData" (setPageEvent)="SetPage($event)"></footer>
+    </ng-template>
+</section>

@@ -1,0 +1,75 @@
+<div *ngIf="documento;then content else loading"></div>
+
+<ng-template #content>
+
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <p>{{documento.prefijo}}/{{documento.numero_expediente}}/{{documento.anio}}</p>
+                </div>
+                <div class="col-2 only-mobile">
+                    <div *ngIf="downloadingPdf; else loading_pdf">
+                        <div class="loader-spin" style="margin: 0;">
+                            <div style="margin: 0;"></div>
+                        </div>
+                    </div>
+
+                    <ng-template #loading_pdf>
+                        <i (click)="clickDownloadFile()" class="download-button fa-solid fa-file-arrow-down fa-xl"></i>
+                    </ng-template>
+                </div>
+            </div>
+            <p>{{documento.caratula}}</p>
+        </div>
+        <div class="col-sm-2 col-12">
+            <div class="only-desktop mt-3">
+                <div *ngIf="downloadingPdf; else loading_pdf">
+                    <div class="loader-spin" style="margin: 0;">
+                        <div style="margin: 0;"></div>
+                    </div>
+                </div>
+
+                <ng-template #loading_pdf>
+                    <i (click)="clickDownloadFile()"
+                        class="download-button fa-solid fa-file-arrow-down fa-xl float-right"></i>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['../../listado']">Volver</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ navClases.informacion }}" (click)="navegate('informacion')">Información</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ navClases.imagenes }}" (click)="navegate('imagenes')">Imagenes</a>
+        </li>
+    </ul>
+
+    <br>
+
+    <div id="informacion-div" class="{{ divClases.informacion }}">
+        <app-informacion [documento]=documento></app-informacion>
+    </div>
+    <div id="imagenes-div" class="{{ divClases.imagenes }}">
+        <app-imagen [documento]=documento [documento_uuid]=documento_uuid [server]=server
+            [headers]=headers></app-imagen>
+    </div>
+    <div id="texto-div" class="{{ divClases.texto }}">
+        <app-texto [documento]=documento></app-texto>
+    </div>
+    <div id="pdf-div" class="{{ divClases.pdf }}">
+        <app-pdf [documento]=documento [documento_uuid]=documento_uuid [server]=server [headers]=headers></app-pdf>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="loader-spin">
+        <div></div>
+    </div>
+</ng-template>

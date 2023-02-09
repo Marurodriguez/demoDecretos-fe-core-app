@@ -1,0 +1,6 @@
+export enum TipoEntidadEnum {
+    CLIENTES = 0,
+    PROVEEDORES = 1,
+
+    vTODOS = -1 //FUNCIONA PARA DETERMINAR QUE SE BUSCAN EN TODAS LAS ENTIDADES!
+}

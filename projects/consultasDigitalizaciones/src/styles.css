@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+.sep {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ngx-datatable {
+  border: 1px solid #dddddd;
+}
+
+html body.layout-dark.layout-transparent .custom-select {
+  color: black !important;
+  border-color: rgba(238, 238, 238, 0.2);
+}
+
+.custom-select option {
+  color: white !important;
+}
+
+:root {
+  --primary-color: white;
+  --secondary-color: rgb(61, 68, 73);
+  --highlight-color: #3282b8;
+
+  --dt-status-available-color: greenyellow;
+  --dt-status-away-color: lightsalmon;
+  --dt-status-offline-color: lightgray;
+
+  --dt-padding: 12px;
+  --dt-padding-s: 6px;
+  --dt-padding-xs: 2px;
+
+  --dt-border-radius: 3px;
+
+  --dt-background-color-container: #2a3338;
+  --dt-border-color: var(--secondary-color);
+  --dt-bg-color: var(--highlight-color);
+  --dt-text-color: var(--primary-color);
+  --dt-bg-active-button: var(--highlight-color);
+  --dt-text-color-button: var(--primary-color);
+  --dt-text-color-active-button: var(--primary-color);
+  --dt-hover-cell-color: var(--highlight-color);
+  --dt-even-row-color: var(--secondary-color);
+  --dt-focus-color: var(--highlight-color);
+  --dt-input-background-color: var(--secondary-color);
+  --dt-input-color: var(--primary-color);
+}
+
+
+.datatable-header{
+  border-bottom: solid 1px var(--dt-border-color);
+  padding: var(--dt-padding);
+  padding-left: 0;
+  display: flex;
+  align-items: baseline;
+
+  vertical-align: middle;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+/*
+.datatable-header-cell-template-wrap{
+  padding-top:0.5rem;
+}
+.datatable-body-cell{
+  border: 1px solid gray;
+
+  text-align: center;
+}
+
+.datatable-row-center, .datatable-row-group, .datatable-body-cell, datatable-body-cell, .datatable-body-cell,
+  ngx-datatable .datatable-body-cell, .ngx-datatable .datatable-header-cell{
+  background:rgba(255,255,255,0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+}
+datatable-body-cell {
+  display: flex !important;
+  flex-wrap: wrap !important ;
+  align-content: center;
+  justify-content: space-around !important;
+} */
+

@@ -1,21 +1,10 @@
 FROM nginx AS ngi
-COPY ./docker/nginx.conf  /etc/nginx/conf.d/default.conf
-
-#ENV NODE_VERSION=16.13.0
-#RUN apt install -y curl
-#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-#ENV NVM_DIR=/root/.nvm
-#RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-#RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-#RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-#ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-
-RUN apt update
-#RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
-RUN apt install -y nodejs npm
-RUN npm install -g @angular/cli@10.1.2
 WORKDIR /tmp
 COPY . .
+COPY ./docker/nginx.conf  /etc/nginx/conf.d/default.conf
+RUN apt update
+RUN apt install -y nodejs npm
+RUN npm install -g @angular/cli@10.1.2
 RUN ng build
 RUN cp -a /tmp/dist/consultasDigitalizaciones /usr/share/nginx/html
 EXPOSE 80

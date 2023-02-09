@@ -6,5 +6,6 @@ RUN apt update
 RUN apt install -y nodejs npm
 RUN npm install -g @angular/cli@10.1.2
 RUN ng build
-RUN cp -a /tmp/dist/consultasDigitalizaciones /usr/share/nginx/html
+RUN rm -R /usr/share/nginx/html
+RUN mv /tmp/dist/consultasDigitalizaciones /usr/share/nginx/html
 EXPOSE 80

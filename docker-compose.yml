@@ -1,14 +1,6 @@
-version: "3.3"
+version: "3.5"
 
 services:
-  #node:
-  #  container_name: fontend_node
-  #  build:
-  #    context: ./docker
-  #    dockerfile: docker_node
-  #  ports:
-  #    - 8080:8080
-
   nginx:
     container_name: fontend_nginx
     build:
@@ -16,5 +8,9 @@ services:
       dockerfile: ./docker/docker_nginx
     ports:
       - 80:80
-    #depends_on:
-    #  - node
+    networks:
+      - proxynet
+
+networks:
+  proxynet:
+    name: proxynet_network

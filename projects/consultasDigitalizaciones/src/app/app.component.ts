@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
     pc.loginUserName = "admin";
     pc.loginPassWord = "123";
     pc.loginHide = false;
-    pc.loginAutoLogin = true;
+    pc.loginAutoLogin = false;
     this.configService.proyectConfig = pc;
     this.configService.templateConf.layout.menuPosition = "Side"; //Side o Top
     this.configService.templateConf.layout.sidebar.backgroundColor = 'bg-glass-3';// 'bg-glass-3';

@@ -14,13 +14,9 @@ import { ChartsModule } from 'ng2-charts';
 import { SmSelectComponent } from "../../../coreApp/src/app/shared/components/sm-select/sm-select.component";
 import { PipeModule } from "../../../coreApp/src/app/shared/pipes/pipe.module";
 import { ComponentsProyectModule } from "./components/components-proyect.module";
-import { CuentaSelectComponent } from "./components/cuenta-select/cuenta-select.component";
 import { NavbarProjectComponent } from "./navigation/navbar/navbar-project.component";
-import { EmpresaSelectComponent } from "./components/empresa-select/empresa-select.component";
-import { EntidadSelectComponent } from "./components/entidad-select/entidad-select.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { SeccionTituloComponent } from "./components/seccion-titulo/seccion-titulo.component";
-import { CuentaInfoComponent } from "./components/cuenta-info/cuenta-info.component";
 import { PeriodoSelectComponent } from "./components/periodo-select/periodo-select.component";
 
 
@@ -41,25 +37,17 @@ import { PeriodoSelectComponent } from "./components/periodo-select/periodo-sele
   ],
   exports: [
     SmSelectComponent,
-    CuentaSelectComponent,
-    EmpresaSelectComponent,
-    EntidadSelectComponent,
     FooterComponent,
     NavbarProjectComponent,
     SeccionTituloComponent,
     PeriodoSelectComponent,
-    CuentaInfoComponent
   ],
   declarations: [
     SmSelectComponent,
-    CuentaSelectComponent,
     FooterComponent,
-    EmpresaSelectComponent,
-    EntidadSelectComponent,
     NavbarProjectComponent,
     SeccionTituloComponent,
     PeriodoSelectComponent,
-    CuentaInfoComponent
   ],
   providers: [
   ],

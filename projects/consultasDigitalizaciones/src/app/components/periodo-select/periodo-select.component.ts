@@ -56,7 +56,7 @@ export class PeriodoSelectComponent {
     this.selectPeriodoConfig = new SmSelectOptions();
     this.selectPeriodoConfig.bindLabel = "nombre";
     this.selectPeriodoConfig.bindValue = "id";
-    this.selectPeriodoConfig.url = enumWS.PERIODO_GET_PERIODOS;
+    //this.selectPeriodoConfig.url = enumWS.PERIODO_GET_PERIODOS;
     this.selectPeriodoConfig.searchable = false;
     this.selectPeriodoConfig.name = "Periodo";
 

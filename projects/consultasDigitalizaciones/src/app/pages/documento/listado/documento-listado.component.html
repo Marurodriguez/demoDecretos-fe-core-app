@@ -73,10 +73,10 @@
 
                 <ng-template ngFor let-documento [ngForOf]="paginateData.content">
                     <tr>
-                        <td>{{documento.categoria.nombre}}</td>
+                        <td>{{documento.documentoTipo.nombre}}</td>
                         <td>{{documento.caratula}}</td>
-                        <td>{{documento.prefijo}}/{{documento.numero_expediente}}/{{documento.anio}}</td>
-                        <td>{{documento.dependencia_iniciadora}}</td>
+                        <td>{{documento.prefijo}}/{{documento.numeroExpediente}}/{{documento.anio}}</td>
+                        <td>{{documento.dependencia.nombre}}</td>
                         <td><a class="btn round bg-light-info px-3"
                                 [routerLink]="['/documentos/detalle', documento.uuid]">Datalles</a></td>
                     </tr>

@@ -77,11 +77,11 @@ export class DocumentoListadoComponent {
         return "fecha";
         break;
       case "cantidadRegistros":
-        if (row.informacion && row?.informacion.length > 0) {
-          return row.informacion.length;
-        } else {
-          return 0;
-        }
+        // if (row.informacion && row?.informacion.length > 0) {
+        //   return row.informacion.length;
+        // } else {
+        //   return 0;
+        // }
         break;
     }
   }

@@ -9,7 +9,6 @@ import { FunctionService } from '../../../../../coreApp/src/app/services/functio
 import { AuthUserService } from '../../../../../coreApp/src/app/shared/auth/auth-user.service';
 import { SmSelectOptions } from '../../../../../coreApp/src/app/shared/components/sm-select/sm-select.component';
 import { CuentaContableModel } from '../../models/CuentaContable.model';
-import { PeriodoModel } from '../../models/Periodo.model';
 import { enumWS } from '../../navigation/ws/ws-routes.config';
 import { UserService } from '../../services/User.service';
 
@@ -45,7 +44,6 @@ export class PeriodoSelectComponent {
   public selectedOptionLabel: string = "";
 
   public selectPeriodoConfig: SmSelectOptions;
-  public initValuePeriodo: PeriodoModel;
   /************************************************************************************************************************
    * Constructor && Implements
    *
@@ -56,12 +54,11 @@ export class PeriodoSelectComponent {
     this.selectPeriodoConfig = new SmSelectOptions();
     this.selectPeriodoConfig.bindLabel = "nombre";
     this.selectPeriodoConfig.bindValue = "id";
-    this.selectPeriodoConfig.url = enumWS.PERIODO_GET_PERIODOS;
+    //this.selectPeriodoConfig.url = enumWS.PERIODO_GET_PERIODOS;
     this.selectPeriodoConfig.searchable = false;
     this.selectPeriodoConfig.name = "Periodo";
 
     const paginateListModel = new PaginateListModel(0, 10);
-    paginateListModel.addParameter("empresa", this.userService.getIdEmpresaSelected().toString());
     this.selectPeriodoConfig.paginateListModel = paginateListModel;
   }
 
@@ -101,7 +98,7 @@ export class PeriodoSelectComponent {
     this.fInicioChange.emit(this.fechaInicio);
   }
 
-  selectPeriodo(periodo: PeriodoModel) {
+  selectPeriodo(periodo: any) {
     let dFechaInicio: Date | undefined | null = this.functionService.getDateFromString(periodo.fechaInicio, "-", 0, false);
     let dFechaFin: Date | undefined | null = this.functionService.getDateFromString(periodo.fechaFin, "-", 0, false);
     if (dFechaInicio == undefined || dFechaInicio == null) {

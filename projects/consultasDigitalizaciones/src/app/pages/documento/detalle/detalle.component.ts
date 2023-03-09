@@ -47,70 +47,70 @@ export class DetalleComponent implements OnInit {
   }
 
   getTextoOcr(force: boolean) {
-    if (this.documento.ocr_texto_desc && !force) return;
-    fetch(this.server + "documento/detalles/ocrtexto/" + this.documento_uuid, { method: 'GET', headers: this.headers })
-      .then(response => {
-        response.text().then(text => {
-          if (response.status == 200) {
-            this.documento.ocr_texto_desc = text;
-          } else {
-            console.error("Error texto ocr");
-            console.error(response);
-            this.documento.ocr_texto_desc = "Error en la respuesta del servidor";
-          }
-          this.cd.markForCheck();
-        });
-      })
-      .catch(error => console.error('error getTextoOcr', error));
+    // if (this.documento.ocr_texto_desc && !force) return;
+    // fetch(this.server + "documento/detalles/ocrtexto/" + this.documento_uuid, { method: 'GET', headers: this.headers })
+    //   .then(response => {
+    //     response.text().then(text => {
+    //       if (response.status == 200) {
+    //         this.documento.ocr_texto_desc = text;
+    //       } else {
+    //         console.error("Error texto ocr");
+    //         console.error(response);
+    //         this.documento.ocr_texto_desc = "Error en la respuesta del servidor";
+    //       }
+    //       this.cd.markForCheck();
+    //     });
+    //   })
+    //   .catch(error => console.error('error getTextoOcr', error));
   }
 
   public clickDownloadFile() {
-    this.downloadingPdf = true;
-    this.cd.markForCheck();
+    // this.downloadingPdf = true;
+    // this.cd.markForCheck();
 
-    if (this.documento.pdf) {
-      this.downloadFile();
-      return;
-    }
+    // if (this.documento.pdf) {
+    //   this.downloadFile();
+    //   return;
+    // }
 
-    fetch(this.server + "documento/pdf/" + this.documento_uuid, { method: 'GET', headers: this.headers })
-      .then(response => {
-        response.text().then(text => {
-          if (response.status == 200) {
-            var archivo = JSON.parse(text);
-            this.documento.pdf = archivo;
-            this.downloadFile();
-          } else {
-            console.error("Error texto ocr");
-            console.error(response);
-            alert("Error al descargar el archivo desde el servidor");
-          }
-          this.downloadingPdf = false;
-          this.cd.markForCheck();
-        });
-      })
-      .catch(error => console.error('error getTextoOcr', error));
+    // fetch(this.server + "documento/pdf/" + this.documento_uuid, { method: 'GET', headers: this.headers })
+    //   .then(response => {
+    //     response.text().then(text => {
+    //       if (response.status == 200) {
+    //         var archivo = JSON.parse(text);
+    //         this.documento.pdf = archivo;
+    //         this.downloadFile();
+    //       } else {
+    //         console.error("Error texto ocr");
+    //         console.error(response);
+    //         alert("Error al descargar el archivo desde el servidor");
+    //       }
+    //       this.downloadingPdf = false;
+    //       this.cd.markForCheck();
+    //     });
+    //   })
+    //   .catch(error => console.error('error getTextoOcr', error));
   }
 
   downloadFile() {
-    var base64str: string = this.documento.pdf.archivo_desc;
-    var binary = atob(base64str.replace(/\s/g, ''));
-    var len = binary.length;
-    var buffer = new ArrayBuffer(len);
-    var view = new Uint8Array(buffer);
-    for (var i = 0; i < len; i++) {
-      view[i] = binary.charCodeAt(i);
-    }
-    var blob = new Blob([view], { type: "application/pdf" });
-    var link = document.createElement('a');
-    console.log(link);
-    link.href = window.URL.createObjectURL(blob);
-    link.download = `${this.documento.prefijo}/${this.documento.numero_expediente}/${this.documento.anio}.pdf`;
-    link.target = "_blank";
-    link.click();
-    link.remove();
-    this.downloadingPdf = false;
-    this.cd.markForCheck();
+    // var base64str: string = this.documento.pdf.archivo_desc;
+    // var binary = atob(base64str.replace(/\s/g, ''));
+    // var len = binary.length;
+    // var buffer = new ArrayBuffer(len);
+    // var view = new Uint8Array(buffer);
+    // for (var i = 0; i < len; i++) {
+    //   view[i] = binary.charCodeAt(i);
+    // }
+    // var blob = new Blob([view], { type: "application/pdf" });
+    // var link = document.createElement('a');
+    // console.log(link);
+    // link.href = window.URL.createObjectURL(blob);
+    // link.download = `${this.documento.prefijo}/${this.documento.numero_expediente}/${this.documento.anio}.pdf`;
+    // link.target = "_blank";
+    // link.click();
+    // link.remove();
+    // this.downloadingPdf = false;
+    // this.cd.markForCheck();
   }
 
 

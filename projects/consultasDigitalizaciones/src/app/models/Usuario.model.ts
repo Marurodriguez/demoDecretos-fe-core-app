@@ -1,10 +1,7 @@
-import { EmpresaModel } from "./Empresa.model";
 
 
 export class UsuarioModel{
   public id: number = 0;
-
-  public empresaList:EmpresaModel[] = [];
 
   public username: string = '';
   public nombre: string = '';

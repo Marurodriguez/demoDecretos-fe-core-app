@@ -1,12 +1,18 @@
 import { wsRoutes } from "../../../../../coreApp/src/app/ws/ws-routes.metadata";
 
 export enum enumWS {
-  LOGIN = 1, // En el login se obtienen las empresas!!
+  LOGIN = 1, // En el login
 
   // Documento
   DOCUMENTO_PAGINATE = 6001,
-  DOCUMENTO_INFORMACION = 6002,
+  DOCUMENTO_GET_UUID = 6002,
   DOCUMENTO_CATEGORIA = 6003,
+  
+  
+  //Documento
+  ARCHIVO_PAGINATE_PREVIEW = 6004 //PREVIEW_DE_IMAGENES
+
+
 
 }
 const moduleApp: string = "sm";
@@ -33,17 +39,26 @@ export const wsRoutesList: wsRoutes[] = [
   },
 
   {
-    enumUrl: enumWS.DOCUMENTO_INFORMACION,
-    url: 'documento/informacion/:param',
-    httpOperation: 'post',
+    enumUrl: enumWS.DOCUMENTO_GET_UUID,
+    url: 'documento/uuid/%uuid%',
+    httpOperation: 'get',
     module: moduleApp
   },
 
   {
     enumUrl: enumWS.DOCUMENTO_CATEGORIA,
-    url: 'documento/categoria/:param',
+    url: 'documento/categoria/%uuid%',
     httpOperation: 'post',
     module: moduleApp
   },
+  /*************************************    END - DOCUMENTO   ******************************/
+
+   /***************************************    ARCHIVO   *********************************/
+  {
+    enumUrl: enumWS.ARCHIVO_PAGINATE_PREVIEW,
+    url: 'archivo/paginate-preview',
+    httpOperation: 'post',
+    module: moduleApp
+  }
   /*************************************    END - DOCUMENTO   ******************************/
 ]

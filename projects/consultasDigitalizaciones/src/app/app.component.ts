@@ -47,6 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
   setProyectConfiguration() {
     let pc = new ProyectConfigModel();
 
+
+
+
     //SIDEBAR!
     pc.sideBarImg = "assets/img/bg-003.jpg"
 
@@ -76,6 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
     this.configService.proyectConfig = pc;
+    this.configService.templateConf.layout.sidebar.collapsed = true;
     this.configService.templateConf.layout.menuPosition = "Side"; //Side o Top
     this.configService.templateConf.layout.sidebar.backgroundColor = 'bg-glass-3';// 'bg-glass-3';
     this.dataService.setRoutesList(pc.routesList);

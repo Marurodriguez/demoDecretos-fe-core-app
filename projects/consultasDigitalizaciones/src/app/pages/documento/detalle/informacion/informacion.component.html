@@ -2,11 +2,11 @@
     <tbody>
         <tr>
             <td>Tipo de expediente</td>
-            <td>{{ documento.categoria.nombre }}</td>
+            <td>{{ documento.documentoTipo.nombre }}</td>
         </tr>
         <tr>
             <td>Dependencia iniciadora</td>
-            <td>{{ documento.dependencia_iniciadora }}</td>
+            <td>{{ documento.dependencia.nombre }}</td>
         </tr>
         <tr>
             <td>Prefijo</td>
@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td>Numero expediente</td>
-            <td>{{ documento.numero_expediente }}</td>
+            <td>{{ documento.numeroExpediente }}</td>
         </tr>
         <tr>
             <td>Año</td>
@@ -24,10 +24,10 @@
             <td>Caratula</td>
             <td>{{ documento.caratula }}</td>
         </tr>
-
+<!-- 
         <tr *ngFor="let informacion of documento.informacion">
             <td>{{ informacion.campo.nombre }}</td>
             <td>{{ informacion.valor }}</td>
-        </tr>
+        </tr> -->
     </tbody>
 </table>

@@ -64,18 +64,18 @@
         <div class="container-table" style="overflow-x:auto;">
             <table width="100%" class="table table-transparent">
                 <tr class="thead-dark">
-                    <th>Tipo</th>
-                    <th>Caratula</th>
-                    <th>Expediente</th>
-                    <th>Dependencia</th>
-                    <th>Acciones</th>
+                    <th width="15%">Tipo</th>
+                    <th width="40%">Caratula</th>
+                    <th width="15%">Expediente</th>
+                    <th width="20%">Dependencia</th>
+                    <th width="10%">Acciones</th>
                 </tr>
 
                 <ng-template ngFor let-documento [ngForOf]="paginateData.content">
                     <tr>
                         <td>{{documento.documentoTipo.nombre}}</td>
                         <td>{{documento.caratula}}</td>
-                        <td>{{documento.prefijo}}/{{documento.numeroExpediente}}/{{documento.anio}}</td>
+                        <td>{{documento.prefijo}}-{{documento.numeroExpediente}}/{{documento.anio}}</td>
                         <td>{{documento.dependencia.nombre}}</td>
                         <td><a class="btn round bg-light-info px-3"
                                 [routerLink]="['/documentos/detalle', documento.uuid]">Datalles</a></td>

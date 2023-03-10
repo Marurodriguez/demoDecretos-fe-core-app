@@ -5,6 +5,12 @@ import { AuthUserService } from '../../../../../../coreApp/src/app/shared/auth/a
 import { DocumentoModel } from '../../../models/Documento.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ArchivoModel } from '../../../models/Archivo.model';
+import { DataService } from '../../../../../../coreApp/src/app/services/data.services';
+import { FunctionService } from '../../../../../../coreApp/src/app/services/function.services';
+import { DocumentosPaginateFiltrosModel } from '../../../models/DocumentosPaginateFiltros.model';
+import { enumWS } from '../../../navigation/ws/ws-routes.config';
+import { TitleBarService } from '../../../services/TitleBar.service';
+import { UserService } from '../../../services/User.service';
 
 @Component({
   selector: 'app-detalle',
@@ -13,37 +19,28 @@ import { ArchivoModel } from '../../../models/Archivo.model';
 })
 export class DetalleComponent implements OnInit {
   public documento: DocumentoModel;
-  public server: string;
-  public documento_uuid: string;
-  public headers: Headers;
+  public documentoUuid: String = "";
   public downloadingPdf: boolean = false;
   public navClases = { informacion: 'active', imagenes: '', texto: '', pdf: '' };
   public divClases = { informacion: '', imagenes: 'hide', texto: 'hide', pdf: 'hide' };
 
-  constructor(private appConfig: AppConfig, public authUserService: AuthUserService, private route: ActivatedRoute, private sanitizer: DomSanitizer, public cd: ChangeDetectorRef) {
-    this.server = this.appConfig.getConfig("server", "");
-
-    this.route.params.subscribe(params => {
-      this.documento_uuid = params['documento_uuid'];
-    });
-
-    this.headers = new Headers();
-    this.headers.append("Content-Type", "application/json");
-    this.headers.append("Accept", "application/json");
-    this.headers.append('Authorization', this.authUserService.getCredentials().toString());
+  constructor(public dataService: DataService, 
+              private route: ActivatedRoute, private sanitizer: DomSanitizer, 
+              public cd: ChangeDetectorRef) {
   }
+
+  ngOnInit(): void {
+    this.documentoUuid =this.route.snapshot.paramMap.get("documento_uuid") ?? "";
+    
+    
+    this.getInformacion(true);
+  }
+
 
   getInformacion(force: boolean) {
     if (this.documento && !force) return;
-    fetch(this.server + "documento/detalles/" + this.documento_uuid, { method: 'GET', headers: this.headers })
-      .then(response => response.text())
-      .then(data => {
-        let obj: DocumentoModel = JSON.parse(data);
-        this.documento = obj;
-        this.cd.markForCheck();
-        console.log("Documento response", this.documento);
-      })
-      .catch(error => console.error('error getInformacion', error));
+    this.dataService.httpFunction(enumWS.DOCUMENTO_GET_UUID,this,{},{"uuid":this.documentoUuid});
+
   }
 
   getTextoOcr(force: boolean) {
@@ -114,7 +111,7 @@ export class DetalleComponent implements OnInit {
   }
 
 
-  public navegate(route): void {
+  public navigate(route): void {
     let tabs = ['informacion', 'imagenes', 'texto', 'pdf'];
     tabs.forEach(tab => {
       if (tab == route) {
@@ -147,7 +144,23 @@ export class DetalleComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  ngOnInit(): void {
-    this.getInformacion(true);
+
+ /************************************************************************************************************************
+   *
+   * RESPONSE OK/ERROR
+   *
+   ************************************************************************************************************************/
+
+ responseOk(httpOperation: any, http: string, data: any, ws: any) {
+  switch (ws.enumUrl) {
+    case enumWS.DOCUMENTO_GET_UUID:
+      this.documento = data;
+      this.cd.markForCheck();
+      break;
   }
+}
+
+responseError(urlResource: string, httpOperation: string, data: any, ws?: any) {
+}
+
 }

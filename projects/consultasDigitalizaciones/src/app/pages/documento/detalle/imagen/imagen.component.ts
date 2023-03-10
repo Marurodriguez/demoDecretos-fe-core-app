@@ -38,10 +38,10 @@ export class ImagenComponent implements OnInit {
     return this.getSantizeUrl(base64);
   }
 
-  // public imagenSelectCreate(archivo: ArchivoDTOModel) {
-  //   let base64 = "data:image/png;base64, " + archivo.archivo_desc;
-  //   return this.getSantizeUrl(base64);
-  // }
+  public imagenSelectCreate(archivo: ArchivoDTOModel) {
+    // let base64 = "data:image/png;base64, " + archivo.archivo_desc;
+    // return this.getSantizeUrl(base64);
+  }
 
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
@@ -84,10 +84,10 @@ export class ImagenComponent implements OnInit {
   getImagenes(force: boolean) {
     
     this.loadingPage = true;
-    let paginateListModel: PaginateListModel = new PaginateListModel();
-    ESTO HAY QUE CAMBIARLO!!!!!
-    
-    this.dataService.httpFunction(enumWS.ARCHIVO_PAGINATE_PREVIEW,this,{},{});
+    let paginateListModel: PaginateListModel = new PaginateListModel(0,10);
+    paginateListModel.addParameter("documentoUuid",this.documento.uuid);
+
+    this.dataService.httpFunction(enumWS.ARCHIVO_PAGINATE_PREVIEW,this,paginateListModel,{});
     
   }
 
@@ -100,7 +100,13 @@ export class ImagenComponent implements OnInit {
  responseOk(httpOperation: any, http: string, data: any, ws: any) {
   switch (ws.enumUrl) {
     case enumWS.ARCHIVO_PAGINATE_PREVIEW:
-      this.paginateData = data;
+    this.loadingPage = true;  
+    this.paginateData = data;
+    if (this.paginateData){
+      this.archivoSeleccionado = data[0];
+    }else{
+      
+    }
       this.cd.markForCheck();
       break;
   }

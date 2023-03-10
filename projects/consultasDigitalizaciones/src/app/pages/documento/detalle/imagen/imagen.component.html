@@ -1,7 +1,7 @@
 <div class="container">
     <div class="w-100 imagen-completa">
 
-        <div *ngIf="archivoSeleccionado; else loading">
+        <!-- <div *ngIf="archivoSeleccionado; else loading"> -->
 
             <div>
                 <div class="w-100">
@@ -10,7 +10,7 @@
                             <div class="d-flex flex-column">
                                 <div *ngIf="loadingPage; else loadingPaginate">
                                     <img *ngFor="let archivo of paginateData.content" [src]="previewCreate(archivo)"
-                                        alt="Imagen {{archivo.uuid}}" (click)="this.selectImagen(archivo.uuid)"
+                                        alt="Imagen" (click)="this.selectImagen(archivo.uuid)"
                                         class="mt-1 pointer" style="max-height: 19vh">
                                 </div>
 
@@ -23,8 +23,8 @@
                         </div>
 
                         <div class="col d-flex justify-content-center w-100">
-                            <img [src]=imagenSelectCreate(archivo_seleccionado)
-                                alt="Imagen {{archivo_seleccionado.uuid}}" style="max-height: 80vh; max-width: 100%"
+                            <img [src]="imagenSelectCreate(archivoSeleccionado)"
+                                alt="Imagen" style="max-height: 80vh; max-width: 100%"
                                 class="pointer" (click)="abrirImagenNuevaVentana()">
 
                             <div *ngIf="loadingArchivoSeleccionado; else loadingImagenPrincipal"
@@ -58,7 +58,7 @@
                     </footer>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
         <ng-template #loading>
             <div class="loader-spin">

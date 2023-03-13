@@ -5,14 +5,12 @@ import { OcrtextoModel } from './Ocrtexto.model';
 
 export class ArchivoModel extends AbstractModel {
     public uuid: string = "";
-    public id_archivo_tipo: number = 0;
+    public orden: number = 0;
+    /* 
+        Enlace al uuid de la imagen grande o si es una imagen grande enlaza a la imagen preview
+    */
+    public uuidAlternativo: string = "";
     public extension: string = "";
-    public peso_kb: number = 0;
-    public archivo_desc: string;
-    public preview_desc: string;
-    public archivo_tipo: ArchivoTipoModel;
-    public ocrtexto: OcrtextoModel;
-    public santizeUrl;
 
     constructor() { super() }
 }

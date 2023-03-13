@@ -18,7 +18,7 @@ import { NavbarProjectComponent } from "./navigation/navbar/navbar-project.compo
 import { FooterComponent } from "./components/footer/footer.component";
 import { SeccionTituloComponent } from "./components/seccion-titulo/seccion-titulo.component";
 import { PeriodoSelectComponent } from "./components/periodo-select/periodo-select.component";
-
+import { ImageViewerModule } from '@hallysonh/ngx-imageviewer';
 
 @NgModule({
   imports: [
@@ -33,7 +33,8 @@ import { PeriodoSelectComponent } from "./components/periodo-select/periodo-sele
     NgxDatatableModule,
     PipeModule,
     NgbTooltipModule,
-    ComponentsProyectModule
+    ComponentsProyectModule,
+    ImageViewerModule
   ],
   exports: [
     SmSelectComponent,

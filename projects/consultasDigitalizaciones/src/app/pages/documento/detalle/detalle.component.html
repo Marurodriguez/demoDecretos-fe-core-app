@@ -54,16 +54,16 @@
     <br>
 
     <div id="informacion-div" class="{{ divClases.informacion }}">
-        <app-informacion [documento]=documento></app-informacion>
+        <app-informacion [documento]="documento"></app-informacion>
     </div>
     <div id="imagenes-div" class="{{ divClases.imagenes }}">
-        <app-imagen [documento]=documento></app-imagen>
+        <documento-imagen-preview [documento]="documento"></documento-imagen-preview>
     </div>
     <div id="texto-div" class="{{ divClases.texto }}">
-        <app-texto [documento]=documento></app-texto>
+        <app-texto [documento]="documento"></app-texto>
     </div>
     <div id="pdf-div" class="{{ divClases.pdf }}">
-        <app-pdf [documento]=documento [documento_uuid]=documento_uuid [server]=server [headers]=headers></app-pdf>
+        <app-pdf [documento]="documento" [documento_uuid]="documento_uuid" [server]="server" [headers]="headers"></app-pdf>
     </div>
 </ng-template>
 

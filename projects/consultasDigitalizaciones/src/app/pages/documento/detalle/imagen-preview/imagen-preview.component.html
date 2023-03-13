@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-md-5 col-lg-4 col-xl-3">
+            <div class = "row">
+                <div class="col-4 col-md-3 col-lg-2 col-xl-1" class="polaroid" *ngFor="let archivo of paginateData.content">
+                    <img class="img-preview" [src]="previewCreate(archivo)"
+                    alt="Imagen" (click)="this.selectImagen(archivo)"
+                    class="mt-1 pointer" style="max-height: 19vh">
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-7 col-lg-8 col-xl-9">
+            <h1>imagen grande</h1>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="container" *ngIf="hide">
+
+    <div class="imagen">
+        <i class="fal fa-th"></i>
+    </div>
+
+    <div class="w-100 imagen-completa">
+
+        <!-- <div *ngIf="archivoSeleccionado; else loading"> -->
+
+            <div>
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col-2 only-desktop">
+                            <div class="d-flex flex-column">
+
+                                
+                                <div *ngIf="loadingPage; else loadingPaginate">
+                                    <!-- <ngx-imageviewer *ngFor="let archivo of paginateData.content" [src]="previewCreate(archivo)"></ngx-imageviewer> -->
+
+
+                                </div>
+
+                                <ng-template #loadingPaginate>
+                                    <div class="loader-spin">
+                                        <div></div>
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-center w-100">
+                            <img [src]="imagenSelectCreate(archivoSeleccionado)"
+                                alt="Imagen" style="max-height: 80vh; max-width: 100%"
+                                class="pointer" (click)="abrirImagenNuevaVentana()">
+
+                            <div *ngIf="loadingArchivoSeleccionado; else loadingImagenPrincipal"
+                                style="position: absolute; top: 50%;">
+                                <div class="loader-spin" style="margin: 0;">
+                                    <div style="margin: 0;"></div>
+                                </div>
+                            </div>
+                            <ng-template #loadingImagenPrincipal></ng-template>
+
+                        </div>
+
+                        <div class="col-2 only-desktop"></div>
+                    </div>
+
+                    <div class="w-100 imagenes-previews only-mobile">
+                        <div *ngIf="loadingPage; else loadingPaginate" class="d-flex justify-content-around">
+                            <img *ngFor="let archivo of paginateData.content" [src]="previewCreate(archivo)"
+                                alt="Imagen {{archivo.uuid}}" width="20%" (click)="this.selectImagen(archivo.uuid)"
+                                class="mt-2 pointer">
+                        </div>
+                        <ng-template #loadingPaginate>
+                            <div class="loader-spin">
+                                <div></div>
+                            </div>
+                        </ng-template>
+                    </div>
+
+                    <footer class="mt-2 imagenes-paginate" [showSelector]="false" [paginate]="paginateData"
+                        (setPageEvent)="SetPage($event)">
+                    </footer>
+                </div>
+            </div>
+        <!-- </div> -->
+
+        <ng-template #loading>
+            <div class="loader-spin">
+                <div></div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

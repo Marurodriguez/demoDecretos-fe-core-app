@@ -10,8 +10,8 @@ export enum enumWS {
   
   
   //Documento
-  ARCHIVO_PAGINATE_PREVIEW = 6004 //PREVIEW_DE_IMAGENES
-
+  ARCHIVO_PAGINATE_PREVIEW = 7000, //PREVIEW_DE_IMAGENES
+  ARCHIVO_DATA_LOAD = 7001 //Carga el archivo. 
 
 
 }
@@ -58,6 +58,12 @@ export const wsRoutesList: wsRoutes[] = [
     enumUrl: enumWS.ARCHIVO_PAGINATE_PREVIEW,
     url: 'archivo/paginate-preview',
     httpOperation: 'post',
+    module: moduleApp
+  },
+  {
+    enumUrl: enumWS.ARCHIVO_DATA_LOAD,
+    url: 'archivo/data/%uuid%',
+    httpOperation: 'get',
     module: moduleApp
   }
   /*************************************    END - DOCUMENTO   ******************************/

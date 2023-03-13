@@ -22,7 +22,7 @@ import { InformacionComponent } from './detalle/informacion/informacion.componen
 import { TextoComponent } from './detalle/texto/texto.component';
 import { PdfComponent } from './detalle/pdf/pdf.component';
 import { DetalleComponent } from "./detalle/detalle.component";
-import { ImagenComponent } from './detalle/imagen/imagen.component';
+import { ImagenPreviewComponent } from './detalle/imagen-preview/imagen-preview.component';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { ImagenComponent } from './detalle/imagen/imagen.component';
     NgxDatatableModule,
     PipeModule,
     NgbTooltipModule,
-    SharedAppModule,
+    SharedAppModule
   ],
   exports: [],
   declarations: [
@@ -52,7 +52,7 @@ import { ImagenComponent } from './detalle/imagen/imagen.component';
     TextoComponent,
     PdfComponent,
     DetalleComponent,
-    ImagenComponent
+    ImagenPreviewComponent
   ],
   providers: [
     UserService

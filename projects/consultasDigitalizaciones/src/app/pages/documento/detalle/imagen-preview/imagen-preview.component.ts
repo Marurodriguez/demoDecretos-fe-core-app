@@ -7,6 +7,7 @@ import { DataService } from '../../../../../../../coreApp/src/app/services/data.
 import { ActivatedRoute } from '@angular/router';
 import { enumWS } from '../../../../navigation/ws/ws-routes.config';
 import { ArchivoDTOModel } from '../../../../models/ArchivoDTO';
+import { ImagenZoomComponent } from '../imagen-zoom/imagen-zoom.component';
 
 
 /**
@@ -30,6 +31,8 @@ export enum TipoVistaEnum{
 
 
 export class ImagenPreviewComponent implements OnInit {
+  @ViewChild('imagenZoomComponent') imagenZoomComponent: ImagenZoomComponent;
+  
   @Input() documento;
   @Input() tipoVista = TipoVistaEnum.vistaGrilla;
 
@@ -37,6 +40,7 @@ export class ImagenPreviewComponent implements OnInit {
 
 
   public paginateData: PaginateDataModel = new PaginateDataModel();
+  public paginateListModel: PaginateListModel = new PaginateListModel(0,12);
   public archivoSeleccionado: ArchivoDTOModel;
   public imagenesPage: Number = 0;
   public imagenesPageAnt: Number = 0;
@@ -50,7 +54,7 @@ export class ImagenPreviewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getImagenes(true);
+    this.refresh(true);
   }
 
   public previewCreate(archivo: ArchivoDTOModel) {
@@ -70,17 +74,19 @@ export class ImagenPreviewComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  SetPage(paginate: PaginateListModel) {
-    //this.imagenes_page = paginate.page;
-    //this.getImagenes(false);
+  SetPage(paginateListModel: PaginateListModel) {
+    this.paginateListModel = paginateListModel;
+    this.refresh(false);
   }
 
   selectImagen(archivo: ArchivoDTOModel) {
+    this.archivoSeleccionado = archivo;
+    //this.dataService.httpFunction(enumWS.ARCHIVO_DATA_LOAD,this,{},{"uuid": archivo.archivo.uuidAlternativo});
+    
     this.loadingArchivoSeleccionado = true;
-    this.loadingArchivoSeleccionado = false; 
-    this.archivoSeleccionado = new ArchivoDTOModel();
-    this.dataService.httpFunction(enumWS.ARCHIVO_DATA_LOAD,this,{},{"uuid": archivo.archivo.uuidAlternativo});
+    this.imagenZoomComponent.changeUuid(this.archivoSeleccionado.archivo.uuidAlternativo);
     this.cd.markForCheck();
+
   }
 
   abrirImagenNuevaVentana() {
@@ -92,13 +98,12 @@ export class ImagenPreviewComponent implements OnInit {
   }
 
 
-  getImagenes(force: boolean) {
-    
+  refresh(force: boolean) {
+   
     this.loadingPage = true;
-    let paginateListModel: PaginateListModel = new PaginateListModel(0,10);
-    paginateListModel.addParameter("documentoUuid",this.documento.uuid);
-
-    this.dataService.httpFunction(enumWS.ARCHIVO_PAGINATE_PREVIEW,this,paginateListModel,{});
+    this.paginateListModel.size = 12;
+    this.paginateListModel.addParameter("documentoUuid",this.documento.uuid);
+    this.dataService.httpFunction(enumWS.ARCHIVO_PAGINATE_PREVIEW,this,this.paginateListModel,{});
     
   }
 

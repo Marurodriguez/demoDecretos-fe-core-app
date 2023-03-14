@@ -23,6 +23,7 @@ import { TextoComponent } from './detalle/texto/texto.component';
 import { PdfComponent } from './detalle/pdf/pdf.component';
 import { DetalleComponent } from "./detalle/detalle.component";
 import { ImagenPreviewComponent } from './detalle/imagen-preview/imagen-preview.component';
+import { ImagenZoomComponent } from "./detalle/imagen-zoom/imagen-zoom.component";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ImagenPreviewComponent } from './detalle/imagen-preview/imagen-preview.
     TextoComponent,
     PdfComponent,
     DetalleComponent,
-    ImagenPreviewComponent
+    ImagenPreviewComponent,
+    ImagenZoomComponent
   ],
   providers: [
     UserService

@@ -11,6 +11,7 @@ import { DocumentosPaginateFiltrosModel } from '../../../models/DocumentosPagina
 import { enumWS } from '../../../navigation/ws/ws-routes.config';
 import { TitleBarService } from '../../../services/TitleBar.service';
 import { UserService } from '../../../services/User.service';
+import { ArchivoDTOModel } from '../../../models/ArchivoDTO';
 
 @Component({
   selector: 'app-detalle',
@@ -19,6 +20,8 @@ import { UserService } from '../../../services/User.service';
 })
 export class DetalleComponent implements OnInit {
   public documento: DocumentoModel;
+
+  public pdf: ArchivoDTOModel = new ArchivoDTOModel();
   public documentoUuid: String = "";
   public downloadingPdf: boolean = false;
   public navClases = { informacion: 'active', imagenes: '', texto: '', pdf: '' };
@@ -90,24 +93,24 @@ export class DetalleComponent implements OnInit {
   }
 
   downloadFile() {
-    // var base64str: string = this.documento.pdf.archivo_desc;
-    // var binary = atob(base64str.replace(/\s/g, ''));
-    // var len = binary.length;
-    // var buffer = new ArrayBuffer(len);
-    // var view = new Uint8Array(buffer);
-    // for (var i = 0; i < len; i++) {
-    //   view[i] = binary.charCodeAt(i);
-    // }
-    // var blob = new Blob([view], { type: "application/pdf" });
-    // var link = document.createElement('a');
-    // console.log(link);
-    // link.href = window.URL.createObjectURL(blob);
-    // link.download = `${this.documento.prefijo}/${this.documento.numero_expediente}/${this.documento.anio}.pdf`;
-    // link.target = "_blank";
-    // link.click();
-    // link.remove();
-    // this.downloadingPdf = false;
-    // this.cd.markForCheck();
+    var base64str: String = this.pdf.archivoDataDTO.data;
+    var binary = atob(base64str.replace(/\s/g, ''));
+    var len = binary.length;
+    var buffer = new ArrayBuffer(len);
+    var view = new Uint8Array(buffer);
+    for (var i = 0; i < len; i++) {
+      view[i] = binary.charCodeAt(i);
+    }
+    var blob = new Blob([view], { type: "application/pdf" });
+    var link = document.createElement('a');
+    console.log(link);
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `${this.documento.prefijo}-${this.documento.numeroExpediente}-${this.documento.anio}.pdf`;
+    link.target = "_blank";
+    link.click();
+    link.remove();
+    this.downloadingPdf = false;
+    this.cd.markForCheck();
   }
 
 

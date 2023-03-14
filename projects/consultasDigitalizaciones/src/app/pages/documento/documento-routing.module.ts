@@ -17,7 +17,6 @@ const routes: Routes = [
   {
     path: 'detalle/:documento_uuid',
     component: DetalleComponent,
-    pathMatch: 'full',
     data: {
       title: 'Detalle'
     }

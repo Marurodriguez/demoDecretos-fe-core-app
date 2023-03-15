@@ -12,7 +12,7 @@ import { enumWS } from '../../../navigation/ws/ws-routes.config';
 import { TitleBarService } from '../../../services/TitleBar.service';
 import { UserService } from '../../../services/User.service';
 import { ArchivoDTOModel } from '../../../models/ArchivoDTO';
-
+import { PaginateListModel } from '../../../../../../coreApp/src/app/models/PaginateList.model';
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -21,7 +21,7 @@ import { ArchivoDTOModel } from '../../../models/ArchivoDTO';
 export class DetalleComponent implements OnInit {
   public documento: DocumentoModel;
 
-  public pdf: ArchivoDTOModel = new ArchivoDTOModel();
+  public pdf: ArchivoDTOModel;
   public documentoUuid: String = "";
   public downloadingPdf: boolean = false;
   public navClases = { informacion: 'active', imagenes: '', texto: '', pdf: '' };
@@ -65,6 +65,19 @@ export class DetalleComponent implements OnInit {
   }
 
   public clickDownloadFile() {
+    
+    // Si ya existe el pdf descargarlo
+    /*if(this.pdf != undefined){
+      this.procesarPDF();
+    }*/
+    // Hay un solo PDF por documento, pero el backend está preparado para devolver más.
+    let paginateList: PaginateListModel = new PaginateListModel(0,1);
+    paginateList.addParameter("documentoUuid",this.documento.uuid);
+    paginateList.addParameter("tipo","pdf");
+
+    this.downloadingPdf = true;
+    this.dataService.httpFunction(enumWS.ARCHIVO_PAGINATE_TIPO,this,paginateList);
+
     // this.downloadingPdf = true;
     // this.cd.markForCheck();
 
@@ -92,7 +105,7 @@ export class DetalleComponent implements OnInit {
     //   .catch(error => console.error('error getTextoOcr', error));
   }
 
-  downloadFile() {
+  procesarPDF() {
     var base64str: String = this.pdf.archivoDataDTO.data;
     var binary = atob(base64str.replace(/\s/g, ''));
     var len = binary.length;
@@ -160,6 +173,11 @@ export class DetalleComponent implements OnInit {
       this.documento = data;
       this.cd.markForCheck();
       break;
+    case enumWS.ARCHIVO_PAGINATE_TIPO:
+      this.pdf = data.content[0]; //Si hay un elemento
+      this.downloadingPdf = false;
+      this.procesarPDF();
+      this.cd.markForCheck();
   }
 }
 

@@ -11,8 +11,8 @@ export enum enumWS {
   
   //Documento
   ARCHIVO_PAGINATE_PREVIEW = 7000, //PREVIEW_DE_IMAGENES
-  ARCHIVO_DATA_LOAD = 7001 //Carga el archivo. 
-
+  ARCHIVO_DATA_LOAD = 7001,       //Carga el archivo. 
+  ARCHIVO_PAGINATE_TIPO = 7002    //Hace un preview según el tipo de contenido solicitado
 
 }
 const moduleApp: string = "sm";
@@ -65,6 +65,12 @@ export const wsRoutesList: wsRoutes[] = [
     url: 'archivo/data/%uuid%',
     httpOperation: 'get',
     module: moduleApp
-  }
+  },
+  {
+    enumUrl: enumWS.ARCHIVO_PAGINATE_TIPO,
+    url: 'archivo/paginate-tipo',
+    httpOperation: 'post',
+    module: moduleApp
+  },
   /*************************************    END - DOCUMENTO   ******************************/
 ]

@@ -98,24 +98,7 @@ export class DocumentoListadoComponent {
     this.headers.append("Accept", "application/json");
     this.headers.append('Authorization', this.authUserService.getCredentials().toString());
 
-    fetch(this.server + "documento/paginate/filtros", { method: 'GET', headers: this.headers })
-      .then(response => {
-        response.text().then(text => {
-          if (response.status == 200) {
-            text = JSON.parse(text);
-            this.documentoFiltros = new DocumentosPaginateFiltrosModel();
-            this.documentoFiltros.categorias = text['categorias'];
-            this.documentoFiltros.dependencias = text['dependencias'];
-            console.log('documentoFiltros', this.documentoFiltros);
-
-          } else {
-            console.error("Error documentos filtros");
-            console.error(response);
-          }
-          this.cd.markForCheck();
-        });
-      })
-      .catch(error => console.error('error getTextoOcr', error));
+    this.dataService.httpFunction(enumWS.DOCUMENTO_PAGINATE, this, new PaginateListModel(this.page, this.size));
   }
 
 
@@ -218,7 +201,7 @@ export class DocumentoListadoComponent {
    *
    ************************************************************************************************************************/
 
-  responseOk(httpOperation: any, http: string, data: PaginateDataModel, ws: any) {
+  responseOk(httpOperation: any, http: string, data: any, ws: any) {
     switch (ws.enumUrl) {
       case enumWS.DOCUMENTO_PAGINATE:
         this.paginateData = data;

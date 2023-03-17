@@ -1,19 +1,9 @@
-<div class="gallery">
-    <div *ngFor="let archivo of paginateData.content" class="div-imagen">
-        <img class="image-preview" [src]="previewCreate(archivo)"
-        alt="Imagen" (click)="this.selectImagen(archivo)">
+<div class="gallery-cont">
+    <div class="gallery">
+        <div *ngFor="let archivo of paginateData.content" class="div-imagen">
+            <img class="image-preview" [src]="previewCreate(archivo)" alt="Imagen" (click)="this.selectImagen(archivo)" />
+        </div>
     </div>
 </div>
-<footer class="mt-2 imagenes-paginate" [showSelector]="false" [paginate]="paginateData"
-(setPageEvent)="SetPage($event)">
-</footer>
-
-
-<!-- <ng-template [ngIf]="loadingArchivoSeleccionado"> -->
-<!-- <div *ngIf="loadingArchivoSeleccionado"> -->
-    <documento-imagen-zoom #imagenZoomComponent></documento-imagen-zoom>
-<!-- </div> -->
-    
-<!-- </ng-template> -->
-
-
+<footer class="mt-2 imagenes-paginate" [showSelector]="false" [paginate]="paginateData" (setPageEvent)="SetPage($event)"></footer>
+<documento-imagen-zoom #imagenZoomComponent></documento-imagen-zoom>

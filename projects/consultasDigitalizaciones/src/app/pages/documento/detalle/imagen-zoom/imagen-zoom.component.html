@@ -1,13 +1,13 @@
-
 <div [hidden]="!visible">
-
-
-    <div class="modal-background" (click)="clickPantalla()">
-        <!-- <div class="div-imagen-zoom"> -->
-            <img class="image-zoom" [src]="getSRC()"
-            alt="Imagen" (click)="abrirImagen()">
-        <!-- </div> -->
+    <div class="modal-background">
+        <div class="div-imagen-zoom">
+            <img id="image-zoom" class="image-zoom" style="height: {{ getHeight() }}" [src]="getSRC()" alt="Imagen" />
+        </div>
     </div>
-
-
+    <div class="controls">
+        <i class="fa-solid fa-circle-xmark text-danger" (click)="clickPantalla()"></i>
+        <i class="fa-solid fa-magnifying-glass-plus" (click)="clickZoom(1)"></i>
+        <i class="fa-solid fa-magnifying-glass-minus" (click)="clickZoom(0)"></i>
+        <i class="fa-solid fa-arrow-up-right-from-square" (click)="abrirImagen()"></i>
+    </div>
 </div>

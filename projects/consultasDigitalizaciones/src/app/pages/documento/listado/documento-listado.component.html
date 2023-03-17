@@ -1,57 +1,51 @@
 <section id="collapse">
-
-
     <div *ngIf="documentoFiltros; else loadingFiltros">
         <form (ngSubmit)="onSubmit($event)">
             <div class="row mt-2 mb-2">
                 <div class="input-group">
-                    <!-- <div class="col-sm-6 col-12 mt-2">
-                        <select class="custom-select" style="color: white !important;" id="tipo"
-                            (change)="changeTipoExpediente($event.target.value)">
-                            <option selected value=0>Tipo de expediente...</option>
-                            <option [value]="categoria.id" *ngFor="let categoria of documentoFiltros.categorias">
-                                {{categoria.nombre}}</option>
+                    <div class="col-sm-6 col-12 mt-2">
+                        <select class="custom-select" style="color: white !important" id="tipo" (change)="changeTipoExpediente($event.target.value)">
+                            <option selected value="0">Tipo de expediente...</option>
+                            <option [value]="categoria.id" *ngFor="let categoria of documentoFiltros.documentoTipos">
+                                {{ categoria.nombre }}
+                            </option>
                         </select>
-                    </div> -->
-                    <!-- <div class="col-sm-6 col-12 mt-2">
-                        <select class="custom-select" style="color: white !important;" id="dependencia">
-                            <option selected value="">Dependencia iniciadora...</option>
-                            <option [value]="dependencia" *ngFor="let dependencia of documentoFiltros.dependencias">
-                                {{dependencia}}</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="col-sm-6 col-12 mt-2">
-                        <input type="text" class="form-control" style="margin: 0;" placeholder="Número expediente..."
-                            id="expediente">
                     </div>
                     <div class="col-sm-6 col-12 mt-2">
-                        <input type="text" class="form-control" style="margin: 0;" placeholder="Caratula..."
-                            id="caratula">
+                        <select class="custom-select" style="color: white !important" id="dependencia">
+                            <option selected value="">Dependencia iniciadora...</option>
+                            <option [value]="dependencia.id" *ngFor="let dependencia of documentoFiltros.dependencias">
+                                {{ dependencia.nombre }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-12 mt-2">
+                        <input type="text" class="form-control" style="margin: 0" placeholder="Número expediente..." id="expediente" />
+                    </div>
+                    <div class="col-sm-6 col-12 mt-2">
+                        <input type="text" class="form-control" style="margin: 0" placeholder="Caratula..." id="caratula" />
                     </div>
 
                     <div *ngFor="let filtro of filtrosAvanzados" class="col-sm-6 col-12 mt-2">
-                        <input [type]="filtro.type" class="form-control" style="margin: 0;"
-                            placeholder="{{filtro.nombre}}..." [id]="filtro.codigo">
+                        <input [type]="filtro.type" class="form-control" style="margin: 0" placeholder="{{ filtro.nombre }}..." [id]="filtro.codigo" />
                     </div>
 
                     <div class="col-12 mt-2">
-                        <input type="submit" class="btn btnl-lg btn-primary float-right" value="Buscar">
-                    </div> -->
+                        <input type="submit" class="btn btnl-lg btn-primary float-right" value="Buscar" />
+                    </div>
                 </div>
             </div>
         </form>
     </div>
 
-    
     <ng-template #loadingFiltros>
         <div class="loader-spin">
             <div></div>
         </div>
     </ng-template>
 
-
     <ng-template [ngIf]="loaded">
-        <div class="container-table" style="overflow-x:auto;">
+        <div class="container-table" style="overflow-x: auto">
             <table width="100%" class="table table-transparent">
                 <tr class="thead-dark">
                     <th width="15%">Expediente</th>
@@ -63,18 +57,15 @@
 
                 <ng-template ngFor let-documento [ngForOf]="paginateData.content">
                     <tr>
-                        <td>{{documento.prefijo}}-{{documento.numeroExpediente}}/{{documento.anio}}</td>
-                        <td>{{documento.caratula}}</td>
-                        <td>{{documento.documentoTipo.nombre}}</td>
-                        <td>{{documento.dependencia.nombre}}</td>
-                        <td><a class="btn round bg-light-info px-3"
-                                [routerLink]="['/documentos/detalle', documento.uuid]">Datalles</a></td>
+                        <td>{{ documento.prefijo }}-{{ documento.numeroExpediente }}/{{ documento.anio }}</td>
+                        <td>{{ documento.caratula }}</td>
+                        <td>{{ documento.documentoTipo.nombre }}</td>
+                        <td>{{ documento.dependencia.nombre }}</td>
+                        <td><a class="btn round bg-light-info px-3" [routerLink]="['/documentos/detalle', documento.uuid]">Datalles</a></td>
                     </tr>
                 </ng-template>
             </table>
         </div>
-        <footer class="mt-2" [paginate]="paginateData" [showSelector]="true" [cantSelector]="paginateData"
-            (setPageEvent)="SetPage($event)">
-        </footer>
+        <footer class="mt-2" [paginate]="paginateData" [showSelector]="true" [cantSelector]="paginateData" (setPageEvent)="SetPage($event)"></footer>
     </ng-template>
 </section>

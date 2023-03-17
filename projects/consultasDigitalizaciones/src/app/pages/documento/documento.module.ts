@@ -44,7 +44,7 @@ import { ImagenZoomComponent } from "./detalle/imagen-zoom/imagen-zoom.component
     NgxDatatableModule,
     PipeModule,
     NgbTooltipModule,
-    SharedAppModule
+    SharedAppModule,
   ],
   exports: [],
   declarations: [

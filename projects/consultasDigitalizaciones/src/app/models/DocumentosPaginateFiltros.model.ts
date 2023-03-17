@@ -1,6 +1,7 @@
-import { CategoriaModel } from "./Categoria.model";
+import { DependenciaModel } from "./Dependencia.mdel";
+import { DocumentoTipoModel } from "./DocumentoTipo.model";
 
 export class DocumentosPaginateFiltrosModel {
-    public categorias: CategoriaModel[];
-    public dependencias: string[];
+    public documentoTipos: DocumentoTipoModel[];
+    public dependencias: DependenciaModel[];
 }

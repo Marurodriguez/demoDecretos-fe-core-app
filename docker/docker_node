@@ -1,5 +1,0 @@
-FROM node:alpine AS build
-WORKDIR /dist/src/app
-COPY . .
-RUN npm cache clean --force
-RUN npm run ng build

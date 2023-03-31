@@ -7,5 +7,5 @@ RUN apt install -y nodejs npm
 RUN npm install
 RUN npm run ng build
 RUN rm -R /usr/share/nginx/html
-RUN mv /tmp/dist/consultasDigitalizaciones /usr/share/nginx/html
+RUN mv /tmp/dist/admDecretos /usr/share/nginx/html
 EXPOSE 80

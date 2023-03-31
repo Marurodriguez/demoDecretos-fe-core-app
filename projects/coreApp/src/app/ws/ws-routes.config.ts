@@ -2,7 +2,7 @@ import { wsRoutes } from "./ws-routes.metadata";
 
 export enum enumURL{
 
-  // MÓDULO DE PRODUCTOS***********************************************
+  // MÓDULO DE DECRETOS***********************************************
   URL_PRODUCTO_PAGINATE = 0,
   //TODO DESCENTRALIZAR ENUMURL HACERLO EXTEND DE OTRO Y RECIBIR EL PADRE
 

@@ -1,0 +1,19 @@
+<div class="container">
+    <form action="">
+        <h4>Nuevo decreto:</h4>
+        <label for="decreto" class="d-block mt-2">Decreto</label>
+        <input type="text" name="deccreto" id="decreto" required [(ngModel)]="decretoActual.decreto">
+        <br>
+        <label for="fecha" class="d-block mt-2">Fecha</label>
+        <input type="date" id="fecha" name="fecha" required [(ngModel)]="decretoActual.fecha">
+        <br>
+        <label for="denominacion"class="d-block mt-2">Denominacion</label>
+        <input type="text" name="denominacion" id="denominacion" [(ngModel)]="decretoActual.denominacion">
+        <br>
+        <label for="detalle" class="d-block mt-2">Detalle</label>
+        <input type="text" name="detalle" id="detalle" [(ngModel)]="decretoActual.detalle">
+        <br>
+        <button class="btn btn-primary mt-4" (click)="guardar()">Guardar</button>
+        <button class="btn btn-danger mt-4 mx-lg-1" [routerLink]="['/listado']" routerLinkActive="router-link-active">Cancelar</button>
+    </form>
+</div>

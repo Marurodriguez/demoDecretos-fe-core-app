@@ -120,9 +120,9 @@
         }
       }
     },
-    "consultasDigitalizaciones": {
-      "root": "projects/consultasDigitalizaciones",
-      "sourceRoot": "projects/consultasDigitalizaciones/src",
+    "admDecretos": {
+      "root": "projects/admDecretos",
+      "sourceRoot": "projects/admDecretos/src",
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -143,18 +143,18 @@
               "css-element-queries"
             ],
             "aot": true,
-            "outputPath": "dist/consultasDigitalizaciones",
-            "index": "projects/consultasDigitalizaciones/src/index.html",
-            "main": "projects/consultasDigitalizaciones/src/main.ts",
-            "tsConfig": "projects/consultasDigitalizaciones/tsconfig.app.json",
-            "polyfills": "projects/consultasDigitalizaciones/src/polyfills.ts",
+            "outputPath": "dist/admDecretos",
+            "index": "projects/admDecretos/src/index.html",
+            "main": "projects/admDecretos/src/main.ts",
+            "tsConfig": "projects/admDecretos/tsconfig.app.json",
+            "polyfills": "projects/admDecretos/src/polyfills.ts",
             "assets": [
               {
                 "input": "projects/assets",
                 "glob": "**/*",
                 "output": "assets"
               },
-              "projects/consultasDigitalizaciones/src/favicon.ico"
+              "projects/admDecretos/src/favicon.ico"
             ],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
@@ -163,7 +163,7 @@
               "projects/assets/css/demo.css",
               "projects/assets/sass/core.scss",
               "projects/styles.css",
-              "projects/consultasDigitalizaciones/src/styles.css"
+              "projects/admDecretos/src/styles.css"
             ],
             "scripts": [
               "projects/assets/vendor/pace/pace.min.js"
@@ -187,8 +187,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "projects/consultasDigitalizaciones/src/environments/environment.ts",
-                  "with": "projects/consultasDigitalizaciones/src/environments/environment.prod.ts"
+                  "replace": "projects/admDecretos/src/environments/environment.ts",
+                  "with": "projects/admDecretos/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -197,26 +197,26 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "consultasDigitalizaciones:build"
+            "browserTarget": "admDecretos:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "consultasDigitalizaciones:build:production"
+              "browserTarget": "admDecretos:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "consultasDigitalizaciones:build"
+            "browserTarget": "admDecretos:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/consultasDigitalizaciones/tsconfig.app.json",
-              "projects/consultasDigitalizaciones/tsconfig.spec.json"
+              "projects/admDecretos/tsconfig.app.json",
+              "projects/admDecretos/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**/*"
@@ -227,18 +227,18 @@
       "e2e": {
         "builder": "@angular-devkit/build-angular:protractor",
         "options": {
-          "protractorConfig": "projects/consultasDigitalizaciones/e2e/protractor.conf.js",
-          "devServerTarget": "consultasDigitalizaciones:serve"
+          "protractorConfig": "projects/admDecretos/e2e/protractor.conf.js",
+          "devServerTarget": "admDecretos:serve"
         },
         "configurations": {
           "production": {
-            "devServerTarget": "consultasDigitalizaciones:serve:production"
+            "devServerTarget": "admDecretos:serve:production"
           }
         }
       }
     }
   },
-  "defaultProject": "consultasDigitalizaciones",
+  "defaultProject": "admDecretos",
   "cli": {
     "analytics": "9e472cbb-4d61-46ce-9a7c-5eae6a406034"
   }
